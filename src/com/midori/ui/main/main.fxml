@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midori.ui.main.MainController">
+   <bottom>
+      <TableView fx:id="_atc" prefHeight="598.0" prefWidth="1600.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="_atc_id" prefWidth="110.0" text="ID" />
+            <TableColumn fx:id="_atc_email" prefWidth="200.0" text="Email" />
+            <TableColumn fx:id="_atc_balance" prefWidth="150.0" text="Balance" />
+            <TableColumn fx:id="_atc_rewardpoints" prefWidth="100.0" text="RP" />
+            <TableColumn fx:id="_atc_refferer" prefWidth="110.0" text="Referrer ID" />
+            <TableColumn fx:id="_atc_fpplayed" prefWidth="100.0" text="#FP" />
+            <TableColumn fx:id="_atc_fpbonusreqcompleted" prefWidth="120.0" text="FP Bonus" />
+            <TableColumn fx:id="_atc_fpstatus" prefWidth="165.0" text="FP Status" />
+            <TableColumn fx:id="_atc_boosts" prefWidth="150.0" text="Boosts" />
+            <TableColumn fx:id="_atc_proxy" prefWidth="160.0" text="Proxy" />
+            <TableColumn fx:id="_atc_status" prefWidth="233.0" text="Status" />
+        </columns>
+      </TableView>
+   </bottom>
+   <center>
+      <HBox maxHeight="1.7976931348623157E308" minHeight="-Infinity" spacing="16.0" BorderPane.alignment="CENTER">
+         <children>
+            <TitledPane animated="false" collapsible="false" maxHeight="1.7976931348623157E308" maxWidth="350.0" text="Account Monitor" HBox.hgrow="ALWAYS">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="_acm_id" layoutX="14.0" layoutY="6.0" text="_acm_id" />
+                        <HBox layoutX="-66.0" layoutY="53.0" spacing="16.0" />
+                        <Button layoutX="20.0" layoutY="180.0" mnemonicParsing="false" onAction="#_acmStart" prefWidth="100.0" text="Start" />
+                        <Button layoutX="20.0" layoutY="219.0" mnemonicParsing="false" onAction="#_acmStop" prefWidth="100.0" text="Stop" />
+                     </children></AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="720.0" text="Utility">
+               <content>
+                  <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Add Account">
+                           <content>
+                              <VBox alignment="CENTER" spacing="16.0">
+                                 <children>
+                                    <HBox fx:id="_aa_pane" spacing="16.0">
+                                       <children>
+                                          <GridPane hgap="8.0" vgap="8.0" HBox.hgrow="ALWAYS">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints vgrow="NEVER" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label text="Email:" />
+                                                <TextField fx:id="_aa_email" GridPane.columnIndex="1" />
+                                                <Label text="Password:" GridPane.rowIndex="1" />
+                                                <PasswordField fx:id="_aa_password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label text="TFA Secret:" GridPane.rowIndex="2" />
+                                                <TextField fx:id="_aa_tfa_secret" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label text="Referrer:" GridPane.rowIndex="3" />
+                                                <TextField fx:id="_aa_referrer" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                             </children>
+                                          </GridPane>
+                                          <Separator orientation="VERTICAL" />
+                                          <GridPane alignment="TOP_RIGHT" hgap="8.0" vgap="8.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints vgrow="NEVER" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label text="User-Agent:" />
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1">
+                                                   <children>
+                                                      <TextField fx:id="_aa_useragent" prefHeight="26.0" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font size="9.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <Button fx:id="_aa_useragent_gen" mnemonicParsing="false" onAction="#_aa_generateUserAgent" text="GEN" />
+                                                   </children>
+                                                </HBox>
+                                                <Label text="Language:" GridPane.rowIndex="1" />
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <TextField fx:id="_aa_language" prefHeight="26.0" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font size="9.0" />
+                                                         </font></TextField>
+                                                      <Button fx:id="_aa_language_gen" mnemonicParsing="false" onAction="#_aa_generateAcceptLanguage" text="GEN" />
+                                                   </children>
+                                                </HBox>
+                                                <Label text="Time Offset:" GridPane.rowIndex="2" />
+                                                <ComboBox fx:id="_aa_timeoffset" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label text="Proxy:" GridPane.rowIndex="3" />
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <children>
+                                                      <ComboBox fx:id="_aa_proxy" onAction="#_aa_changeProxy" prefWidth="95.0" />
+                                                      <TextField fx:id="_aa_proxy_address" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </HBox>
+                                    <BorderPane>
+                                       <right>
+                                          <HBox spacing="8.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Button fx:id="_aa_checkproxy" mnemonicParsing="false" onAction="#_aa_checkProxy" prefWidth="100.0" text="Check Proxy">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Button>
+                                                <Button fx:id="_aa_addaccount" defaultButton="true" mnemonicParsing="false" onAction="#_aa_addAccount" prefWidth="150.0" text="Add Account">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </right>
+                                       <left>
+                                          <HBox spacing="8.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <CheckBox fx:id="_aa_exitingaccount" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#_aa_changeExitingAccount" text="Add Exiting Account" />
+                                                <TextField fx:id="_aa_email_auth" prefWidth="150.0" promptText="Email auth link" visible="false">
+                                                   <HBox.margin>
+                                                      <Insets left="25.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                                <Button fx:id="_aa_email_auth_button" mnemonicParsing="false" onAction="#_aa_cancel" text="Cancel" visible="false" />
+                                             </children>
+                                          </HBox>
+                                       </left>
+                                    </BorderPane>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                      </Tab>
+                        <Tab text="Settings">
+                           <content>
+                              <HBox spacing="16.0">
+                                 <children>
+                                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="194.0" vbarPolicy="ALWAYS" HBox.hgrow="ALWAYS">
+                                       <content>
+                                          <GridPane hgap="8.0" maxWidth="1.7976931348623157E308" vgap="8.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                                <RowConstraints vgrow="NEVER" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label text="Proxy Username:" />
+                                                <TextField fx:id="_set_proxyusername" GridPane.columnIndex="1" />
+                                                <Label text="Proxy Password:" GridPane.rowIndex="1" />
+                                                <PasswordField fx:id="_set_proxypassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label text="Anti-Captcha Key:" GridPane.rowIndex="2" />
+                                                <TextField fx:id="_set_anticaptchakey" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                       </content>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                       </padding>
+                                    </ScrollPane>
+                                    <VBox alignment="BOTTOM_CENTER" spacing="16.0" HBox.hgrow="NEVER">
+                                       <children>
+                                          <Button fx:id="_set_updateproxycredentials" cancelButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#_set_updateProxyCredentials" text="Update Proxy Credentials" />
+                                          <Button fx:id="_set_savesettings" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#_set_saveSettings" prefWidth="200.0" text="Save Settings" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                 </padding>
+                              </HBox>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" collapsible="false" maxHeight="1.7976931348623157E308" text="Logs" HBox.hgrow="SOMETIMES">
+               <content>
+                  <ListView fx:id="_log" prefHeight="258.0" />
+               </content>
+            </TitledPane>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </HBox>
+   </center>
+</BorderPane>
