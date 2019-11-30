@@ -2,7 +2,7 @@ package com.midori.bot;
 
 import com.anti_captcha.Api.ImageToText;
 import com.anti_captcha.Helper.DebugHelper;
-import com.midori.ui.main.Log;
+import com.midori.ui.Log;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;

@@ -1,6 +1,6 @@
 package com.midori.database;
 
-import com.midori.ui.main.Log;
+import com.midori.ui.Log;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

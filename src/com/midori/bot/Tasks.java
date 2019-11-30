@@ -2,7 +2,7 @@ package com.midori.bot;
 
 
 import com.midori.database.DBAccTools;
-import com.midori.ui.main.Log;
+import com.midori.ui.Log;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

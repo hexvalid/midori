@@ -7,128 +7,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/ant.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/midori_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f0404a71-e1c6-4bf9-b794-2dba16956afa.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/description.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/anon.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_commons_commons_lang3_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_httpcomponents_httpclient_4_5_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_json_json_20190722.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_jsoup_jsoup_1_12_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_xerial_sqlite_jdbc_3_28_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/midori.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jnlp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/artifacts/midori_jar/midori-v0.1.0-alpha.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/AnticaptchaBase$ApiMethod.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/AnticaptchaBase$ProxyTypeOption.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/AnticaptchaBase$SchemeType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/AnticaptchaBase.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Api/CustomCaptcha.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Api/FunCaptcha.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Api/GeeTestProxyless.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Api/ImageToText$NumericOption.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Api/ImageToText.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Api/NoCaptcha.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Api/NoCaptchaProxyless.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Api/RecaptchaV3Proxyless.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/ApiResponse/BalanceResponse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/ApiResponse/CreateTaskResponse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/ApiResponse/TaskResultResponse$SolutionData.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/ApiResponse/TaskResultResponse$StatusType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/ApiResponse/TaskResultResponse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Helper/DebugHelper$Type.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Helper/DebugHelper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Helper/HttpHelper$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Helper/HttpHelper$HttpsClientBuilderGiver$HttpsTrustManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Helper/HttpHelper$HttpsClientBuilderGiver.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Helper/HttpHelper$InputOutput.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Helper/HttpHelper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Helper/JsonHelper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Helper/StringHelper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Http/HttpRequest$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Http/HttpRequest$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Http/HttpRequest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Http/HttpResponse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/IAnticaptchaTaskProtocol.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/anti_captcha/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Account$socksSocket.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Account.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Captcha.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Engine$Header.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Engine$LoginError.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Engine$RollError.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Engine$URL.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Engine.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Rune$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Rune.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Tasks$FPTask.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Tasks.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/bot/Test.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/database/DBAccTools.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/database/DBCon.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/database/DBSetTools.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/ui/main/Log$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/ui/main/Log$t.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/ui/main/Log.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/ui/main/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/ui/main/MainController$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/ui/main/MainController$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/ui/main/MainController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/ui/main/Tools$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/ui/main/Tools.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/midori/com/midori/ui/main/main.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/AnticaptchaBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Api/CustomCaptcha.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Api/FunCaptcha.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Api/GeeTestProxyless.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Api/ImageToText.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Api/NoCaptcha.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Api/NoCaptchaProxyless.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Api/RecaptchaV3Proxyless.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/ApiResponse/BalanceResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/ApiResponse/CreateTaskResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/ApiResponse/TaskResultResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Helper/DebugHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Helper/HttpHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Helper/JsonHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Helper/StringHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Http/HttpRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Http/HttpResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/IAnticaptchaTaskProtocol.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/anti_captcha/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Captcha.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Engine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Rune.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Tasks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/database/DBAccTools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/database/DBCon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/database/DBSetTools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/ui/main/Log.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/ui/main/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/ui/main/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/ui/main/Tools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/ui/main/main.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/midori/ui/fonts/Roboto-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/midori/ui/fonts/Roboto-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/midori/ui/fonts/RobotoMono-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/midori/ui/fonts/RobotoMono-Regular.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Tasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Tasks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/database/DBCon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/database/DBCon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/main/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/main/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/Tools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +163,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML&#10;JavaScript&#10;JAVA" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="/usr/bin/javafx-scenebuilder" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/midori/ui/fonts" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -284,11 +176,14 @@
       <recent name="com.midori.database" />
       <recent name="com.midori.ui.main" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/midori/ui/fonts" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/com/midori/ui/main" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -371,36 +266,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.midori.ui.main.Main" />
-      <module name="midori" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.anti_captcha.Main" />
-      <module name="midori" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="ui.Main" />
+      <option name="MAIN_CLASS_NAME" value="com.midori.ui.Main" />
       <module name="midori" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -431,16 +300,12 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Test" />
-      <item itemvalue="Application.Main (1)" />
-      <item itemvalue="Application.Main (2)" />
       <item itemvalue="Application.Captcha" />
       <item itemvalue="Java Scratch.Scratch" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Captcha" />
-        <item itemvalue="Application.Main (2)" />
         <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Application.Test" />
       </list>
@@ -476,32 +341,38 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="738" y="391" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575136653802">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="738" y="391" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575136653802" />
     <state x="1007" y="523" width="525" height="441" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575051056655">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="1007" y="523" width="525" height="441" key="#com.intellij.ide.util.TreeClassChooserDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575051056655" />
-    <state x="662" y="42" width="1280" height="1251" key="CommitChangelistDialog2" timestamp="1575136126981">
+    <state x="662" y="42" width="1280" height="1251" key="CommitChangelistDialog2" timestamp="1575136172827">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="662" y="42" width="1280" height="1251" key="CommitChangelistDialog2/0.27.2560.1413@0.27.2560.1413" timestamp="1575136126981" />
-    <state width="1739" height="394" key="GridCell.Tab.0.bottom" timestamp="1575135852910">
+    <state x="662" y="42" width="1280" height="1251" key="CommitChangelistDialog2/0.27.2560.1413@0.27.2560.1413" timestamp="1575136172827" />
+    <state width="2514" height="514" key="GridCell.Tab.0.bottom" timestamp="1575137358128">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="1739" height="394" key="GridCell.Tab.0.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1575135852910" />
-    <state width="1739" height="394" key="GridCell.Tab.0.center" timestamp="1575135852910">
+    <state width="2514" height="514" key="GridCell.Tab.0.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1575137358128" />
+    <state width="2514" height="514" key="GridCell.Tab.0.center" timestamp="1575137358128">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="1739" height="394" key="GridCell.Tab.0.center/0.27.2560.1413@0.27.2560.1413" timestamp="1575135852910" />
-    <state width="1739" height="394" key="GridCell.Tab.0.left" timestamp="1575135852910">
+    <state width="2514" height="514" key="GridCell.Tab.0.center/0.27.2560.1413@0.27.2560.1413" timestamp="1575137358128" />
+    <state width="2514" height="514" key="GridCell.Tab.0.left" timestamp="1575137358128">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="1739" height="394" key="GridCell.Tab.0.left/0.27.2560.1413@0.27.2560.1413" timestamp="1575135852910" />
-    <state width="1739" height="394" key="GridCell.Tab.0.right" timestamp="1575135852910">
+    <state width="2514" height="514" key="GridCell.Tab.0.left/0.27.2560.1413@0.27.2560.1413" timestamp="1575137358128" />
+    <state width="2514" height="514" key="GridCell.Tab.0.right" timestamp="1575137358128">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="1739" height="394" key="GridCell.Tab.0.right/0.27.2560.1413@0.27.2560.1413" timestamp="1575135852910" />
+    <state width="2514" height="514" key="GridCell.Tab.0.right/0.27.2560.1413@0.27.2560.1413" timestamp="1575137358128" />
     <state x="1159" y="661" width="242" height="151" key="GuiceyIDEA.NewGuiceProvider" timestamp="1575047176692">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
@@ -514,10 +385,14 @@
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="771" y="368" width="1022" height="737" key="SettingsEditor/0.27.2560.1413@0.27.2560.1413" timestamp="1575055909736" />
-    <state x="875" y="469" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1575136142366">
+    <state x="1065" y="539" width="570" height="174" key="VCS.ChangelistChooser" timestamp="1575136230414">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="875" y="469" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.2560.1413@0.27.2560.1413" timestamp="1575136142366" />
+    <state x="1065" y="539" width="570" height="174" key="VCS.ChangelistChooser/0.27.2560.1413@0.27.2560.1413" timestamp="1575136230414" />
+    <state x="875" y="469" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1575136208185">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="875" y="469" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.2560.1413@0.27.2560.1413" timestamp="1575136208185" />
     <state x="940" y="561" key="com.intellij.ide.util.TipDialog" timestamp="1575135667417">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>

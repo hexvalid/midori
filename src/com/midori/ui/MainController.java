@@ -1,40 +1,28 @@
-package com.midori.ui.main;
+package com.midori.ui;
 
 import com.midori.bot.Account;
 import com.midori.bot.Engine;
 import com.midori.bot.Rune;
-import com.midori.bot.Tasks;
 import com.midori.database.DBAccTools;
 import com.midori.database.DBCon;
 import com.midori.database.DBSetTools;
 import javafx.application.Platform;
-import javafx.beans.property.ReadOnlyDoubleWrapper;
-import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.TextFlow;
-import javafx.util.Duration;
-import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.Period;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainController implements Initializable {
 

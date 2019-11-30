@@ -1,4 +1,4 @@
-package com.midori.ui.main;
+package com.midori.ui;
 
 import javafx.application.Platform;
 import javafx.scene.layout.Region;
