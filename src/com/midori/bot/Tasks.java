@@ -20,14 +20,11 @@ public class Tasks {
             this.account.set_Status("Running");
             while (!Thread.currentThread().isInterrupted()) {
                 try {
-
                     if (account.isReadyForRoll()) {
                         this.account.set_Status("Homing");
-                        Engine.Home(account);
+                        Engine.Home(account, null, Engine.URL.home);
                         this.account.set_Status("Rolling");
                         Engine.Roll(account);
-                        this.account.set_Status("Updating");
-                        DBAccTools.UpdateAccountForRoll(this.account);
                     } else {
                         this.account.set_Status("Waiting");
                         Thread.sleep(account.remaingMillisForRoll());
@@ -37,12 +34,40 @@ public class Tasks {
                     this.account.set_Status("Stopped");
                     Thread.currentThread().interrupt();
                     return;
-                } catch (IOException | URISyntaxException | SQLException | Engine.RollError e) {
+                } catch (IOException e) {
                     this.account.set_Status("Error: " + e.getMessage());
-                    Log.Print(Log.t.ERR, account.logDomain() +  e.getMessage());
+                    Log.Print(Log.t.WRN, account.logDomain() + "Account got unknown error. Will be wait 10 seconds...");
+                    try {
+                        Thread.sleep(10 * 1000);
+                    } catch (InterruptedException ex) {
+                        this.account.set_Status("Stopped");
+                        Thread.currentThread().interrupt();
+                        return;
+                    }
+                } catch (Engine.RollError e) {
+                    this.account.set_Status("Error: " + e.getMessage());
+                    Log.Print(Log.t.ERR, account.logDomain() + e.getMessage());
                     e.printStackTrace();
-                    this.account.stopExecuter();
-                    return;
+                    if (e.getMessage().contains("Captcha is incorrect")) {
+                        Log.Print(Log.t.WRN, account.logDomain() + "Account got roll (captcha) error. Trying again...");
+                    } else {
+                        Log.Print(Log.t.WRN, account.logDomain() + "Account got roll error. Will be wait 1 minutes...");
+                        try {
+                            Thread.sleep(1 * 60 * 1000);
+                        } catch (InterruptedException ex) {
+                            this.account.set_Status("Stopped");
+                            Thread.currentThread().interrupt();
+                            return;
+                        }
+                    }
+                } finally {
+                    try {
+                        DBAccTools.UpdateAccountForRoll(this.account);
+                    } catch (SQLException e) {
+                        Log.Print(Log.t.ERR, account.logDomain() + e.getMessage());
+                        e.printStackTrace();
+                        this.account.stopExecuter();
+                    }
                 }
             }
         }

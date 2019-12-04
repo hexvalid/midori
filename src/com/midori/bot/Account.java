@@ -1,5 +1,6 @@
 package com.midori.bot;
 
+import com.midori.ui.Log;
 import javafx.beans.property.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
@@ -7,16 +8,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpHost;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.cookie.Cookie;
-import org.apache.http.impl.client.BasicCookieStore;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.*;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.message.BasicHeader;
@@ -24,11 +23,11 @@ import org.apache.http.protocol.HttpContext;
 import org.apache.http.ssl.SSLContexts;
 
 import javax.net.ssl.SSLContext;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Socket;
 import java.sql.Date;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -51,7 +50,7 @@ public class Account {
     private final IntegerProperty fpPlayed;
     private final DoubleProperty fpBonusReqCompleted;
     public int fpRpCost;
-    public String emailStatus;
+    public boolean emailConfirmed;
     public String stats;
     public boolean disableLottery;
     public boolean tfaEnabled;
@@ -104,15 +103,16 @@ public class Account {
         this.boosts = new SimpleStringProperty();
         this.proxy = new SimpleStringProperty();
         this._fpStatus = new SimpleStringProperty();
-        this._status = new SimpleStringProperty();
+        this._status = new SimpleStringProperty("Idle");
     }
 
     // For from UI (Exiting Account)
-    public Account(String email, String password, boolean tfaEnabled, String tfaSecret, int timeOffset,
+    public Account(String email, String password, int referrer, boolean tfaEnabled, String tfaSecret, int timeOffset,
                    String headerUserAgent, String headerAcceptLanguage, String proxy) {
         this();
         this.email.set(email);
         this.password = password;
+        this.referrer.set(referrer);
         this.tfaEnabled = tfaEnabled;
         this.tfaSecret = tfaSecret;
         this.timeOffset = timeOffset;
@@ -122,18 +122,23 @@ public class Account {
         this.fingerprint = RandomStringUtils.random(32, Rune.baseBytes);
         this.fingerprint2 = RandomUtils.nextLong(1111111111L, 9999999999L);
         this.cookieStore = new BasicCookieStore();
-        this.buildHttpClient();
-
     }
 
-    public void buildHttpClient() {
+    public void openHTTPClient() {
+        Log.Print(Log.t.DBG, "Openning HTTP Client...");
         this.httpClientContext = HttpClientContext.create();
         HttpClientBuilder builder = HttpClients.custom();
         builder.setDefaultCookieStore(this.cookieStore)
                 .setUserAgent(this.headerUserAgent)
                 .setDefaultHeaders(Collections.singletonList(
-                        new BasicHeader(HttpHeaders.ACCEPT_LANGUAGE, headerAcceptLanguage)));
-        if (this.proxy.equals("DEBUG")) {
+                        new BasicHeader(HttpHeaders.ACCEPT_LANGUAGE, headerAcceptLanguage)))
+                .disableAutomaticRetries()
+                .disableConnectionState()
+                .setDefaultRequestConfig(RequestConfig.custom()
+                        .setConnectTimeout(30 * 1000)
+                        .setConnectionRequestTimeout(30 * 1000)
+                        .setSocketTimeout(32 * 1000).build());
+        if (this.proxy.get().equals("DEBUG")) {
             builder.setProxy(new HttpHost("127.0.0.1", 8080, "http")); //should be final variable
             try {
                 builder.setSSLContext(SSLContexts.custom().loadTrustMaterial((chain, authType) -> true).build());
@@ -153,10 +158,14 @@ public class Account {
                     new InetSocketAddress(parts[0], Integer.parseInt(parts[1])));
         }
         this.httpClient = builder.build();
-        this.set_Status("Idle");
-
     }
 
+    public void closeHTTPClient() throws IOException {
+        Log.Print(Log.t.DBG, "Closing HTTP Client...");
+        this.httpClient.close();
+        this.httpClientContext = null;
+        this.httpClient = null;
+    }
 
     public IntegerProperty idProperty() {
         return this.id;

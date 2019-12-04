@@ -4,6 +4,7 @@ package com.midori.ui;
 import com.midori.bot.Account;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.protocol.HttpClientContext;
@@ -33,6 +34,7 @@ public class Tools {
     }
 
     static boolean CheckProxy(String address) {
+        //todo: need timeout
         Log.Print(Log.t.INF, "Checking proxy...");
         if (StringUtils.countMatches(address, '.') == 3 && StringUtils.countMatches(address, ':') == 1) {
             HttpClientContext httpClientContext = HttpClientContext.create();
@@ -42,7 +44,11 @@ public class Tools {
                             .register("http", PlainConnectionSocketFactory.INSTANCE)
                             .register("https", new Account.socksSocket(SSLContexts.createSystemDefault()))
                             .build()));
-
+            builder.setDefaultRequestConfig(RequestConfig.custom()
+                    .setConnectTimeout(10 * 1000)
+                    .setConnectionRequestTimeout(10 * 1000)
+                    .setSocketTimeout(10 * 1000).build());
+            builder.disableAutomaticRetries();
             String[] parts = StringUtils.split(address, ':');
             httpClientContext.setAttribute("socks.address",
                     new InetSocketAddress(parts[0], Integer.parseInt(parts[1])));

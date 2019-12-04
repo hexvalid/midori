@@ -1,6 +1,7 @@
 package com.midori.ui;
 
 import com.midori.bot.Account;
+import com.midori.bot.Boost;
 import com.midori.bot.Engine;
 import com.midori.bot.Rune;
 import com.midori.database.DBAccTools;
@@ -13,10 +14,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.TextFlow;
+import javafx.util.StringConverter;
+import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.GeneralSecurityException;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -67,6 +72,24 @@ public class MainController implements Initializable {
 
     @FXML
     private Label _acm_id;
+
+    @FXML
+    private CheckBox _acm_disablelottery;
+
+    @FXML
+    private HBox _acm_email_verification_box;
+
+    @FXML
+    private Button _acm_email_verification_send_button;
+
+    @FXML
+    private TextField _acm_email_verification;
+
+    @FXML
+    private Button _acm_email_verification_verificate_button;
+
+    @FXML
+    private ComboBox<Boost> _acm_boosts;
 
     @FXML
     private TextField _aa_email;
@@ -135,10 +158,19 @@ public class MainController implements Initializable {
     public ListView<TextFlow> _log;
 
     @FXML
-    public Button _acc_home;
+    public Button _acm_home;
 
     @FXML
     public Button _acc_roll;
+
+    @FXML
+    private Button _acm_enable_tfa;
+
+    @FXML
+    private Label _acm_tfa_status;
+
+    @FXML
+    private TextField _acm_rcv3;
 
     //Other vars
     static List<Account> accounts;
@@ -157,21 +189,12 @@ public class MainController implements Initializable {
             _atc_id.setCellValueFactory(d -> d.getValue().idProperty().asObject());
             _atc_email.setCellValueFactory(d -> d.getValue().emailProperty());
             _atc_balance.setCellValueFactory(d -> d.getValue().balanceProperty().asObject());
-            _atc_balance.setCellFactory(tc -> new TableCell<Account, Double>() {
-                @Override
-                protected void updateItem(Double value, boolean empty) {
-                    super.updateItem(value, empty);
-                    if (empty) {
-                        setText(null);
-                    } else {
-                        setText(String.format("%.8f", value));
-                    }
-                }
-            });
+            _atc_balance.setCellFactory(tc -> doubleSetter("%.8f"));
             _atc_rewardpoints.setCellValueFactory(d -> d.getValue().rewardPointsProperty().asObject());
             _atc_refferer.setCellValueFactory(d -> d.getValue().referrerProperty().asObject());
             _atc_fpplayed.setCellValueFactory(d -> d.getValue().fpPlayedProperty().asObject());
             _atc_fpbonusreqcompleted.setCellValueFactory(d -> d.getValue().fpBonusReqCompletedProperty().asObject());
+            _atc_fpbonusreqcompleted.setCellFactory(tc -> doubleSetter("%.4f"));
             _atc_fpstatus.setCellValueFactory(d -> d.getValue()._fpStatusProperty());
             _atc_boosts.setCellValueFactory(d -> d.getValue().boostsProperty());
             _atc_proxy.setCellValueFactory(d -> d.getValue().proxyProperty());
@@ -183,6 +206,18 @@ public class MainController implements Initializable {
             _atc.getSelectionModel().selectedItemProperty().addListener((obs, oldS, newS) -> {
                 if (newS != null) {
                     _acm_id.setText(newS.idProperty().asString().get());
+                    _acm_disablelottery.setSelected(newS.disableLottery);
+                    if (!_aa_exitingaccount.isSelected()) {
+                        _aa_referrer.setText(String.valueOf(newS.idProperty().get()));
+                    }
+                    if (newS.tfaEnabled) {
+                        _acm_tfa_status.setText("TFA Enabled");
+                    } else {
+                        _acm_tfa_status.setText("TFA Disabled");
+                    }
+                    _acm_enable_tfa.setDisable(newS.tfaEnabled);
+                    _acm_email_verification_box.setVisible(!newS.emailConfirmed);
+
                 }
             });
 
@@ -195,16 +230,25 @@ public class MainController implements Initializable {
             _aa_timeoffset.getSelectionModel().select(41);
 
 
-            //todo: fix later
-            _aa_exitingaccount.fire();
-            _aa_exitingaccount.setDisable(true);
+            _acm_boosts.getItems().setAll(Boost.BOOSTS);
+            _acm_boosts.getSelectionModel().select(0);
+            _acm_boosts.setConverter(new StringConverter<Boost>() {
+                @Override
+                public String toString(Boost obj) {
+                    return obj.name + " (" + obj.cost + ")";
+                }
 
+                @Override
+                public Boost fromString(String s) {
+                    return null;
+                }
+            });
 
             _set_proxyusername.setText(DBSetTools.SET_PROXY_USERNAME);
             _set_proxypassword.setText(DBSetTools.SET_PROXY_PASSWORD);
             _set_anticaptchakey.setText(DBSetTools.SET_ANTICAPTCHA_KEY);
 
-            Log.Print(Log.t.INF, "midori v0.1.0 alpha");
+            Log.Print(Log.t.INF, "midori v0.2.0 alpha");
 
             Log.Print(Log.t.WRN, "This is a testing version for development & feedback purposes");
 
@@ -246,8 +290,8 @@ public class MainController implements Initializable {
     @FXML
     void _aa_addAccount() {
         new Thread(() -> {
-            boolean checkProxy = false;
-            String proxy = null, proxyAddress = null;
+            boolean checkProxy;
+            String proxy, proxyAddress = null;
             if (aa_account == null) {
                 Platform.runLater(() -> {
                     _aa_pane.setDisable(true);
@@ -275,6 +319,7 @@ public class MainController implements Initializable {
                     aa_account = new Account(
                             _aa_email.getText(),
                             _aa_password.getText(),
+                            Integer.parseInt(_aa_referrer.getText()),
                             _aa_tfa_secret.getLength() > 3,
                             _aa_tfa_secret.getText(),
                             Rune.timeZoneOffsetSolver(_aa_timeoffset.getSelectionModel().getSelectedItem()),
@@ -284,18 +329,21 @@ public class MainController implements Initializable {
                 } else {
                     Log.Print(Log.t.INF, "Bypassing email auth...");
                     try {
-                        System.out.println(Engine.Open(aa_account, _aa_email_auth.getText().replaceAll("email_verify", "email_verify_conf")));
+                        Engine.Open(aa_account, _aa_email_auth.getText().replaceAll("email_verify", "email_verify_conf"));
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        Log.Print(Log.t.ERR, e.getMessage());
                     }
                 }
                 try {
-                    Log.Print(Log.t.INF, "Logging into account...");
-                    Engine.Login(aa_account);
+                    Log.Print(Log.t.INF, "Adding account...");
+                    Engine.Login(aa_account, !_aa_exitingaccount.isSelected());
                     Log.Print(Log.t.INF, "Homing account...");
-                    Engine.Home(aa_account);
+                    Engine.Home(aa_account, null, Engine.URL.root);
                     Log.Print(Log.t.INF, "Account adding to database...");
                     DBAccTools.InsertAccount(aa_account);
+                    accounts.add(aa_account);
+                    _atc.getItems().add(aa_account);
+                    _atc.refresh();
                     Log.Print(Log.t.SCS, "Account added");
                     aa_account = null;
                     Platform.runLater(() -> {
@@ -392,6 +440,23 @@ public class MainController implements Initializable {
     }
 
     @FXML
+    void _acmHome() {
+        new Thread(() -> {
+            try {
+                Platform.runLater(() -> _acm_home.setDisable(true));
+                Engine.Home(_atc.getSelectionModel().getSelectedItem(), null, Engine.URL.home);
+                DBAccTools.UpdateAccountForRoll(_atc.getSelectionModel().getSelectedItem());
+            } catch (IOException | SQLException | InterruptedException e) {
+                Log.Print(Log.t.ERR, e.getMessage());
+                e.printStackTrace();
+            } finally {
+                Platform.runLater(() -> _acm_home.setDisable(false));
+            }
+
+        }).start();
+    }
+
+    @FXML
     void _aa_changeProxy() {
         if (_aa_proxy.getValue().equals("ON")) {
             _aa_proxy_address.setDisable(false);
@@ -435,5 +500,135 @@ public class MainController implements Initializable {
     @FXML
     void _aa_generateAcceptLanguage() {
         _aa_language.setText(Rune.getRandomAcceptLanguage());
+    }
+
+    @FXML
+    void _acm_disableLottery() {
+        new Thread(() -> {
+            try {
+                Platform.runLater(() -> _acm_disablelottery.setDisable(true));
+                Engine.toggleLottery(_atc.getSelectionModel().getSelectedItem());
+                _acm_disablelottery.setSelected(_atc.getSelectionModel().getSelectedItem().disableLottery);
+                DBAccTools.UpdateAccountForRoll(_atc.getSelectionModel().getSelectedItem());
+            } catch (IOException | URISyntaxException | SQLException e) {
+                Log.Print(Log.t.ERR, e.getMessage());
+                e.printStackTrace();
+            } finally {
+                Platform.runLater(() -> _acm_disablelottery.setDisable(false));
+            }
+        }).start();
+    }
+
+    @FXML
+    void _acm_sendLink() {
+        new Thread(() -> {
+            try {
+                Platform.runLater(() -> _acm_email_verification_send_button.setDisable(true));
+                Engine.confirmEmail(_atc.getSelectionModel().getSelectedItem());
+            } catch (IOException | URISyntaxException e) {
+                Log.Print(Log.t.ERR, e.getMessage());
+                e.printStackTrace();
+            } finally {
+                Platform.runLater(() -> _acm_email_verification_send_button.setDisable(false));
+            }
+        }).start();
+    }
+
+    @FXML
+    void _acm_verificate() {
+        new Thread(() -> {
+            try {
+                Platform.runLater(() -> _acm_email_verification_verificate_button.setDisable(true));
+                Log.Print(Log.t.INF, "Confirming email verification link...");
+                Engine.Open(_atc.getSelectionModel().getSelectedItem(),
+                        _acm_email_verification.getText().replaceAll("email_verify", "email_verify_conf"));
+                Thread.sleep(2000);
+                Engine.Home(_atc.getSelectionModel().getSelectedItem(), "?op=home&tab=edit&tab2=enable_2fa",
+                        _acm_email_verification.getText().replaceAll("email_verify", "email_verify_conf"));
+                DBAccTools.UpdateAccountForRoll(_atc.getSelectionModel().getSelectedItem());
+                _acm_email_verification_box.setVisible(!_atc.getSelectionModel().getSelectedItem().emailConfirmed);
+            } catch (IOException | SQLException | InterruptedException e) {
+                Log.Print(Log.t.ERR, e.getMessage());
+                e.printStackTrace();
+            } finally {
+                Platform.runLater(() -> _acm_email_verification_verificate_button.setDisable(false));
+            }
+        }).start();
+    }
+
+    @FXML
+    void _acm_enableTfa() {
+        new Thread(() -> {
+            try {
+                Platform.runLater(() -> _acm_enable_tfa.setDisable(true));
+                Engine.enableTFA(_atc.getSelectionModel().getSelectedItem());
+            } catch (IOException | URISyntaxException | SQLException | GeneralSecurityException e) {
+                Log.Print(Log.t.ERR, e.getMessage());
+                e.printStackTrace();
+            } finally {
+                Platform.runLater(() -> _acm_enable_tfa.setDisable(false));
+            }
+        }).start();
+    }
+
+
+    @FXML
+    void _sendV3() {
+        new Thread(() -> {
+            try {
+                Engine.RecordRecaptchaV3(_atc.getSelectionModel().getSelectedItem(), _acm_rcv3.getText());
+            } catch (IOException | URISyntaxException e) {
+                Log.Print(Log.t.ERR, e.getMessage());
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+
+    public TableCell doubleSetter(String format) {
+        return new TableCell<Account, Double>() {
+            @Override
+            protected void updateItem(Double value, boolean empty) {
+                super.updateItem(value, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    setText(String.format(format, value));
+                }
+            }
+        };
+    }
+
+
+    public void _dShuffle() throws SQLException {
+        Log.Print(Log.t.DBG, "Shuffle start...");
+        for (Account a : accounts) {
+            if (a.isReadyForRoll()) {
+                a.lastFPDate = new java.sql.Date(DateUtils.addSeconds(new Date(), -RandomUtils.nextInt(1, 3600)).getTime());
+                DBAccTools.UpdateLastFPDate(a);
+            }
+        }
+        Log.Print(Log.t.DBG, "Shuffle end.");
+    }
+
+    public void _dStartAll() {
+        Log.Print(Log.t.DBG, "Start all start...");
+        for (Account a : accounts) {
+            a.startExecuter();
+        }
+        Log.Print(Log.t.DBG, "Start all end.");
+    }
+
+    public void _dStopAll() {
+        Log.Print(Log.t.DBG, "Stop all start...");
+        for (Account a : accounts) {
+            a.stopExecuter();
+        }
+        Log.Print(Log.t.DBG, "Stop all end.");
+    }
+
+    public void _acmRedeem() throws IOException, URISyntaxException {
+        Log.Print(Log.t.DBG, "Redeeming...");
+        Engine.RedeemRewards(_atc.getSelectionModel().getSelectedItem(), _acm_boosts.getSelectionModel().getSelectedItem());
     }
 }

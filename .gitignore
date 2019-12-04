@@ -1,2 +1,6 @@
 /*.db
+/*.db.bak*
 /out/
+.attach_pid*
+server-*
+todo.txt

@@ -19,6 +19,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
         Font.loadFont(new FileInputStream(new File("/home/anon/IdeaProjects/midori/src/com/midori/ui/fonts/RobotoMono-Regular.ttf")), 10);
         Font.loadFont(new FileInputStream(new File("/home/anon/IdeaProjects/midori/src/com/midori/ui/fonts/RobotoMono-Bold.ttf")), 10);
+        //todo: fonts
 
         Parent root = loader.load();
         Controller = loader.getController();

@@ -30,7 +30,7 @@ public class DBAccTools {
         pstmt.setInt(15, account.fpPlayedProperty().get());
         pstmt.setDouble(16, account.fpBonusReqCompletedProperty().get());
         pstmt.setInt(17, account.fpRpCost);
-        pstmt.setString(18, account.emailStatus);
+        pstmt.setBoolean(18, account.emailConfirmed);
         pstmt.setString(19, account.stats);
         pstmt.setBoolean(20, account.disableLottery);
         pstmt.setBoolean(21, account.tfaEnabled);
@@ -61,7 +61,7 @@ public class DBAccTools {
             account.btcAddress = rs.getString("btcAddress");
             account.setBalance(rs.getDouble("balance"));
             account.setRewardPoints(rs.getInt("rewardPoints"));
-            account.setReferrer( rs.getInt("referrer"));
+            account.setReferrer(rs.getInt("referrer"));
             account.lastFPDate = rs.getDate("lastFPDate");
             account.fingerprint = rs.getString("fingerprint");
             account.fingerprint2 = rs.getLong("fingerprint2");
@@ -72,7 +72,7 @@ public class DBAccTools {
             account.setFpPlayed(rs.getInt("fpPlayed"));
             account.setFpBonusReqCompleted(rs.getDouble("fpBonusReqCompleted"));
             account.fpRpCost = rs.getInt("fpRpCost");
-            account.emailStatus = rs.getString("emailStatus");
+            account.emailConfirmed = rs.getBoolean("emailConfirmed");
             account.stats = rs.getString("stats");
             account.disableLottery = rs.getBoolean("disableLottery");
             account.tfaEnabled = rs.getBoolean("tfaEnabled");
@@ -86,7 +86,6 @@ public class DBAccTools {
             account.setProxy(rs.getString("proxy"));
             account.cookieStore = SerializationUtils.deserialize(rs.getBytes("cookieStore"));
             account.logs = rs.getString("logs");
-            account.buildHttpClient();
             list.add(account);
         }
         rs.close();
@@ -102,11 +101,26 @@ public class DBAccTools {
         pstmt.setInt(4, account.fpPlayedProperty().get());
         pstmt.setDouble(5, account.fpBonusReqCompletedProperty().get());
         pstmt.setInt(6, account.fpRpCost);
-        pstmt.setString(7, account.stats);
-        pstmt.setBoolean(8, account.disableLottery);
-        pstmt.setBytes(9, SerializationUtils.serialize(account.cookieStore));
-        pstmt.setInt(10, account.idProperty().get());
+        pstmt.setBoolean(7, account.emailConfirmed);
+        pstmt.setString(8, account.stats);
+        pstmt.setBoolean(9, account.disableLottery);
+        pstmt.setBoolean(10, account.tfaEnabled);
+        pstmt.setBytes(11, SerializationUtils.serialize(account.cookieStore));
+        pstmt.setInt(12, account.idProperty().get());
         pstmt.executeUpdate();
     }
 
+    public static void UpdateTFASecret(Account account) throws SQLException {
+        PreparedStatement pstmt = DBCon.conn.prepareStatement(DBCon.sqlTfaSecret);
+        pstmt.setString(1, account.tfaSecret);
+        pstmt.setInt(2, account.idProperty().get());
+        pstmt.executeUpdate();
+    }
+
+    public static void UpdateLastFPDate(Account account) throws SQLException {
+        PreparedStatement pstmt = DBCon.conn.prepareStatement(DBCon.sqlLastFPDate);
+        pstmt.setDate(1, account.lastFPDate);
+        pstmt.setInt(2, account.idProperty().get());
+        pstmt.executeUpdate();
+    }
 }

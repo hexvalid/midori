@@ -46,21 +46,79 @@
       <HBox maxHeight="1.7976931348623157E308" minHeight="-Infinity" spacing="16.0" BorderPane.alignment="CENTER">
          <children>
             <TitledPane animated="false" collapsible="false" maxHeight="1.7976931348623157E308" maxWidth="350.0" text="Account Monitor" HBox.hgrow="ALWAYS">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="_acm_id" layoutX="14.0" layoutY="6.0" text="_acm_id" />
-                        <HBox layoutX="-66.0" layoutY="53.0" spacing="16.0" />
-                        <Button layoutX="20.0" layoutY="180.0" mnemonicParsing="false" onAction="#_acmStart" prefWidth="100.0" text="Start" />
-                        <Button layoutX="20.0" layoutY="219.0" mnemonicParsing="false" onAction="#_acmStop" prefWidth="100.0" text="Stop" />
-                     </children></AnchorPane>
-              </content>
+               <content>
+                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Overview">
+                           <content>
+                              <VBox spacing="14.0">
+                                 <children>
+                                    <HBox>
+                                       <children>
+                                          <Label text="ID: " />
+                                          <Label fx:id="_acm_id" text="_acm_id" />
+                                       </children>
+                                    </HBox>
+                                    <CheckBox fx:id="_acm_disablelottery" mnemonicParsing="false" onAction="#_acm_disableLottery" text="Disable Lottery" />
+                                    <HBox fx:id="_acm_email_verification_box" spacing="8.0">
+                                       <children>
+                                          <Button fx:id="_acm_email_verification_send_button" mnemonicParsing="false" onAction="#_acm_sendLink" text="Send Link" HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="_acm_email_verification" prefWidth="20.0" promptText="Link here" HBox.hgrow="SOMETIMES" />
+                                          <Button fx:id="_acm_email_verification_verificate_button" mnemonicParsing="false" onAction="#_acm_verificate" text="Verificate" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox spacing="8.0">
+                                       <children>
+                                          <Button fx:id="_acm_enable_tfa" mnemonicParsing="false" onAction="#_acm_enableTfa" text="Enable TFA" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="_acm_tfa_status" maxHeight="1.7976931348623157E308" prefHeight="26.0" prefWidth="226.0" text="_tfa_status" />
+                                       </children>
+                                    </HBox>
+                                    <HBox spacing="8.0">
+                                       <children>
+                                          <TextField fx:id="_acm_rcv3" prefWidth="20.0" promptText="recaptcha v3 token" HBox.hgrow="SOMETIMES" />
+                                          <Button mnemonicParsing="false" onAction="#_sendV3" text="Send" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" spacing="16.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#_acmStart" prefWidth="95.0" text="Start" />
+                                          <Button mnemonicParsing="false" onAction="#_acmStop" prefWidth="95.0" text="Stop" />
+                                          <Button fx:id="_acm_home" mnemonicParsing="false" onAction="#_acmHome" prefWidth="95.0" text="Home" HBox.hgrow="SOMETIMES" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                      </Tab>
+                      <Tab text="Rewards">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="16.0">
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                                 <children>
+                                    <HBox spacing="8.0">
+                                       <children>
+                                          <ComboBox fx:id="_acm_boosts" maxWidth="1.7976931348623157E308" HBox.hgrow="SOMETIMES" />
+                                          <Button mnemonicParsing="false" onAction="#_acmRedeem" prefHeight="26.0" prefWidth="102.0" text="Redeem" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </content>
             </TitledPane>
             <TitledPane animated="false" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="720.0" text="Utility">
                <content>
                   <TabPane tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Add Account">
+                      <Tab closable="false" text="Add Account">
                            <content>
                               <VBox alignment="CENTER" spacing="16.0">
                                  <children>
@@ -175,7 +233,18 @@
                               </VBox>
                            </content>
                       </Tab>
-                        <Tab text="Settings">
+                        <Tab closable="false" text="Dashboard">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Button layoutX="642.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dShuffle" text="shuffle" />
+                                    <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dStartAll" text="start all" />
+                                    <Button layoutX="93.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dStopAll" text="stop all" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab closable="false" text="Settings">
                            <content>
                               <HBox spacing="16.0">
                                  <children>
