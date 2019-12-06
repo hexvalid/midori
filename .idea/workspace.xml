@@ -7,21 +7,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="update">
-      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Prefs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_commons_commons_lang3_3_91.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_httpcomponents_httpclient_4_5_101.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_json_json_201907221.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_jsoup_jsoup_1_12_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_xerial_sqlite_jdbc_3_28_01.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Simulator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/midori/ui/res/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/f0404a71-e1c6-4bf9-b794-2dba16956afa.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f0404a71-e1c6-4bf9-b794-2dba16956afa.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_apache_commons_commons_lang3_3_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_apache_httpcomponents_httpclient_4_5_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_json_json_20190722.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_jsoup_jsoup_1_12_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_xerial_sqlite_jdbc_3_28_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Captcha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Captcha.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/midori.iml" beforeDir="false" afterPath="$PROJECT_DIR$/midori.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Rune.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Rune.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Tasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Tasks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/database/DBAccTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/database/DBAccTools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/database/DBCon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/database/DBCon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/fonts/Roboto-Bold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/res/fonts/Roboto-Bold.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/fonts/Roboto-Regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/res/fonts/Roboto-Regular.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/fonts/RobotoMono-Bold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/res/fonts/RobotoMono-Bold.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/fonts/RobotoMono-Regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/res/fonts/RobotoMono-Regular.ttf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,25 +69,7 @@
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="midori.db" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-        <item name="accounts: table" type="3d80ac25:SqliteImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="midori.db [bak]" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="midori.db [bak]" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="midori.db [bak]" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -175,11 +166,12 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON&#10;HTML&#10;TEXT&#10;JavaScript" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML&#10;JSON&#10;TEXT&#10;JavaScript" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/SceneBuilder/SceneBuilder.exe" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -189,10 +181,12 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.midori.ui.res" />
       <recent name="com.midori.database" />
       <recent name="com.midori.ui.main" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Yagmur\IdeaProjects\midori" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/com/midori/ui/fonts" />
     </key>
@@ -200,7 +194,7 @@
       <recent name="$PROJECT_DIR$/src/com/midori/ui/main" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Test">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -286,6 +280,16 @@
     <configuration name="Main" type="Application" factoryName="Application" singleton="false">
       <option name="MAIN_CLASS_NAME" value="com.midori.ui.Main" />
       <module name="midori" />
+      <option name="VM_PARAMETERS" value="-Dprism.allowhidpi=false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Simulator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.midori.bot.Simulator" />
+      <module name="midori" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -318,11 +322,13 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Captcha" />
       <item itemvalue="Application.Test" />
+      <item itemvalue="Application.Simulator" />
       <item itemvalue="Java Scratch.Scratch" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Simulator" />
         <item itemvalue="Application.Captcha" />
         <item itemvalue="Java Scratch.Scratch" />
       </list>
@@ -341,26 +347,12 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:midori.db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@6bed228f" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@665d03fd" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:midori.db [bak]" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:midori.db [bak]" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@189495e6" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:midori.db [bak]" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@283ece67" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:midori.db [bak]" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@11fbdc25" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="root:midori.db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@f29fc84" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -392,9 +384,16 @@
     <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="738" y="391" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575538606897">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state x="376" y="144" key="#Configure_Path_Variables" timestamp="1575648771242">
+      <screen x="0" y="0" width="1728" height="1112" />
     </state>
+    <state x="313" y="119" key="#Configure_Path_Variables/0.0.1440.920@0.0.1440.920" timestamp="1575636235682" />
+    <state x="376" y="144" key="#Configure_Path_Variables/0.0.1728.1112@0.0.1728.1112" timestamp="1575648771242" />
+    <state x="415" y="237" width="782" height="533" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575649250399">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="415" y="237" width="782" height="533" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.920@0.0.1440.920" timestamp="1575649250399" />
+    <state x="623" y="361" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2160.1400@0.0.2160.1400" timestamp="1575637391722" />
     <state x="738" y="391" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575538606897" />
     <state x="995" y="538" width="614" height="398" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575227129109">
       <screen x="0" y="27" width="2560" height="1413" />
@@ -408,6 +407,10 @@
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="1007" y="523" width="525" height="441" key="#com.intellij.ide.util.TreeClassChooserDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575051056655" />
+    <state x="518" y="366" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1575649964377">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="518" y="366" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1440.920@0.0.1440.920" timestamp="1575649964377" />
     <state x="662" y="42" width="1280" height="1251" key="CommitChangelistDialog2" timestamp="1575462544848">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
@@ -416,42 +419,83 @@
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="100" y="127" width="2360" height="1213" key="DiffContextDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575580290877" />
-    <state x="917" y="479" width="719" height="521" key="FileChooserDialogImpl" timestamp="1575538604209">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state x="516" y="294" width="723" height="340" key="FileChooserDialogImpl" timestamp="1575650176569">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state x="516" y="294" width="723" height="340" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1575650176569" />
     <state x="917" y="479" width="719" height="521" key="FileChooserDialogImpl/0.27.2560.1413@0.27.2560.1413" timestamp="1575538604209" />
-    <state width="2514" height="307" key="GridCell.Tab.0.bottom" timestamp="1575618234274">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1397" height="233" key="GridCell.Tab.0.bottom" timestamp="1575653760836">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state width="1397" height="233" key="GridCell.Tab.0.bottom/0.0.1440.920@0.0.1440.920" timestamp="1575653760836" />
+    <state width="1685" height="233" key="GridCell.Tab.0.bottom/0.0.1728.1112@0.0.1728.1112" timestamp="1575649089535" />
+    <state width="2117" height="242" key="GridCell.Tab.0.bottom/0.0.2160.1400@0.0.2160.1400" timestamp="1575647187475" />
     <state width="2514" height="307" key="GridCell.Tab.0.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1575618234274" />
-    <state width="2514" height="307" key="GridCell.Tab.0.center" timestamp="1575618234273">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1397" height="233" key="GridCell.Tab.0.center" timestamp="1575653760836">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state width="1397" height="233" key="GridCell.Tab.0.center/0.0.1440.920@0.0.1440.920" timestamp="1575653760836" />
+    <state width="1685" height="233" key="GridCell.Tab.0.center/0.0.1728.1112@0.0.1728.1112" timestamp="1575649089535" />
+    <state width="2117" height="242" key="GridCell.Tab.0.center/0.0.2160.1400@0.0.2160.1400" timestamp="1575647187475" />
     <state width="2514" height="307" key="GridCell.Tab.0.center/0.27.2560.1413@0.27.2560.1413" timestamp="1575618234273" />
-    <state width="2514" height="307" key="GridCell.Tab.0.left" timestamp="1575618234273">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1397" height="233" key="GridCell.Tab.0.left" timestamp="1575653760836">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state width="1397" height="233" key="GridCell.Tab.0.left/0.0.1440.920@0.0.1440.920" timestamp="1575653760836" />
+    <state width="1685" height="233" key="GridCell.Tab.0.left/0.0.1728.1112@0.0.1728.1112" timestamp="1575649089535" />
+    <state width="2117" height="242" key="GridCell.Tab.0.left/0.0.2160.1400@0.0.2160.1400" timestamp="1575647187475" />
     <state width="2514" height="307" key="GridCell.Tab.0.left/0.27.2560.1413@0.27.2560.1413" timestamp="1575618234273" />
-    <state width="2514" height="307" key="GridCell.Tab.0.right" timestamp="1575618234273">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1397" height="233" key="GridCell.Tab.0.right" timestamp="1575653760836">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state width="1397" height="233" key="GridCell.Tab.0.right/0.0.1440.920@0.0.1440.920" timestamp="1575653760836" />
+    <state width="1685" height="233" key="GridCell.Tab.0.right/0.0.1728.1112@0.0.1728.1112" timestamp="1575649089535" />
+    <state width="2117" height="242" key="GridCell.Tab.0.right/0.0.2160.1400@0.0.2160.1400" timestamp="1575647187475" />
     <state width="2514" height="307" key="GridCell.Tab.0.right/0.27.2560.1413@0.27.2560.1413" timestamp="1575618234273" />
-    <state width="2514" height="484" key="GridCell.Tab.1.bottom" timestamp="1575578425278">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1397" height="233" key="GridCell.Tab.1.bottom" timestamp="1575649301633">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state width="1397" height="233" key="GridCell.Tab.1.bottom/0.0.1440.920@0.0.1440.920" timestamp="1575649301633" />
+    <state width="1685" height="376" key="GridCell.Tab.1.bottom/0.0.1728.1112@0.0.1728.1112" timestamp="1575648675651" />
     <state width="2514" height="484" key="GridCell.Tab.1.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1575578425278" />
-    <state width="2514" height="484" key="GridCell.Tab.1.center" timestamp="1575578425278">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1397" height="233" key="GridCell.Tab.1.center" timestamp="1575649301633">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state width="1397" height="233" key="GridCell.Tab.1.center/0.0.1440.920@0.0.1440.920" timestamp="1575649301633" />
+    <state width="1685" height="376" key="GridCell.Tab.1.center/0.0.1728.1112@0.0.1728.1112" timestamp="1575648675651" />
     <state width="2514" height="484" key="GridCell.Tab.1.center/0.27.2560.1413@0.27.2560.1413" timestamp="1575578425278" />
-    <state width="2514" height="484" key="GridCell.Tab.1.left" timestamp="1575578425278">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1397" height="233" key="GridCell.Tab.1.left" timestamp="1575649301633">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state width="1397" height="233" key="GridCell.Tab.1.left/0.0.1440.920@0.0.1440.920" timestamp="1575649301633" />
+    <state width="1685" height="376" key="GridCell.Tab.1.left/0.0.1728.1112@0.0.1728.1112" timestamp="1575648675651" />
     <state width="2514" height="484" key="GridCell.Tab.1.left/0.27.2560.1413@0.27.2560.1413" timestamp="1575578425278" />
-    <state width="2514" height="484" key="GridCell.Tab.1.right" timestamp="1575578425278">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1397" height="233" key="GridCell.Tab.1.right" timestamp="1575649301633">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state width="1397" height="233" key="GridCell.Tab.1.right/0.0.1440.920@0.0.1440.920" timestamp="1575649301633" />
+    <state width="1685" height="376" key="GridCell.Tab.1.right/0.0.1728.1112@0.0.1728.1112" timestamp="1575648675651" />
     <state width="2514" height="484" key="GridCell.Tab.1.right/0.27.2560.1413@0.27.2560.1413" timestamp="1575578425278" />
+    <state width="1397" height="233" key="GridCell.Tab.2.bottom" timestamp="1575649301634">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="233" key="GridCell.Tab.2.bottom/0.0.1440.920@0.0.1440.920" timestamp="1575649301634" />
+    <state width="1397" height="233" key="GridCell.Tab.2.bottom/0.0.1728.1112@0.0.1728.1112" timestamp="1575648675635" />
+    <state width="1397" height="233" key="GridCell.Tab.2.center" timestamp="1575649301634">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="233" key="GridCell.Tab.2.center/0.0.1440.920@0.0.1440.920" timestamp="1575649301634" />
+    <state width="1397" height="233" key="GridCell.Tab.2.center/0.0.1728.1112@0.0.1728.1112" timestamp="1575648675635" />
+    <state width="1397" height="233" key="GridCell.Tab.2.left" timestamp="1575649301634">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="233" key="GridCell.Tab.2.left/0.0.1440.920@0.0.1440.920" timestamp="1575649301634" />
+    <state width="1397" height="233" key="GridCell.Tab.2.left/0.0.1728.1112@0.0.1728.1112" timestamp="1575648675635" />
+    <state width="1397" height="233" key="GridCell.Tab.2.right" timestamp="1575649301634">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="233" key="GridCell.Tab.2.right/0.0.1440.920@0.0.1440.920" timestamp="1575649301634" />
+    <state width="1397" height="233" key="GridCell.Tab.2.right/0.0.1728.1112@0.0.1728.1112" timestamp="1575648675635" />
     <state x="1159" y="661" width="242" height="151" key="GuiceyIDEA.NewGuiceProvider" timestamp="1575047176692">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
@@ -464,9 +508,11 @@
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="947" y="445" width="656" height="583" key="RollbackChangesDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575614670090" />
-    <state x="588" y="277" width="1367" height="737" key="SettingsEditor" timestamp="1575570233428">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state x="471" y="263" width="914" height="707" key="SettingsEditor" timestamp="1575647286675">
+      <screen x="0" y="0" width="2160" height="1400" />
     </state>
+    <state x="314" y="173" width="914" height="707" key="SettingsEditor/0.0.1440.920@0.0.1440.920" timestamp="1575636864790" />
+    <state x="471" y="263" key="SettingsEditor/0.0.2160.1400@0.0.2160.1400" timestamp="1575647286675" />
     <state x="588" y="277" width="1367" height="737" key="SettingsEditor/0.27.2560.1413@0.27.2560.1413" timestamp="1575570233428" />
     <state x="1065" y="539" width="570" height="174" key="VCS.ChangelistChooser" timestamp="1575136230414">
       <screen x="0" y="27" width="2560" height="1413" />
@@ -484,29 +530,35 @@
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="21" y="27" width="2349" height="1213" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575611922144" />
-    <state x="100" y="127" width="2360" height="1213" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1575574406317">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state x="84" y="99" width="1992" height="1202" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1575637621961">
+      <screen x="0" y="0" width="2160" height="1400" />
     </state>
+    <state x="84" y="99" width="1992" height="1202" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.0.2160.1400@0.0.2160.1400" timestamp="1575637621961" />
     <state x="100" y="127" width="2360" height="1213" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575574406317" />
-    <state x="940" y="561" key="com.intellij.ide.util.TipDialog" timestamp="1575609440730">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state x="635" y="421" key="com.intellij.ide.util.TipDialog" timestamp="1575648763394">
+      <screen x="0" y="0" width="1728" height="1112" />
     </state>
+    <state x="529" y="348" key="com.intellij.ide.util.TipDialog/0.0.1440.920@0.0.1440.920" timestamp="1575636196227" />
+    <state x="635" y="421" key="com.intellij.ide.util.TipDialog/0.0.1728.1112@0.0.1728.1112" timestamp="1575648763394" />
     <state x="940" y="561" key="com.intellij.ide.util.TipDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575609440730" />
-    <state x="1522" y="813" width="645" height="216" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1575300314515">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state x="856" y="512" width="440" height="228" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1575636851679">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state x="856" y="512" width="440" height="228" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1440.920@0.0.1440.920" timestamp="1575636851679" />
     <state x="1522" y="813" width="645" height="216" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.27.2560.1413@0.27.2560.1413" timestamp="1575300314515" />
     <state x="759" y="313" width="1031" height="847" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1575319767625">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="759" y="313" width="1031" height="847" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.2560.1413@0.27.2560.1413" timestamp="1575319767625" />
-    <state x="1013" y="497" width="524" height="487" key="extract.method.dialog" timestamp="1575610846219">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state x="570" y="306" width="538" height="441" key="extract.method.dialog" timestamp="1575637947173">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state x="570" y="306" width="538" height="441" key="extract.method.dialog/0.0.1440.920@0.0.1440.920" timestamp="1575637947173" />
     <state x="1013" y="497" width="524" height="487" key="extract.method.dialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575610846219" />
-    <state x="958" y="456" width="1227" height="644" key="find.popup" timestamp="1575618458075">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state x="539" y="279" width="691" height="526" key="find.popup" timestamp="1575650424930">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state x="539" y="279" width="691" height="526" key="find.popup/0.0.1440.920@0.0.1440.920" timestamp="1575650424930" />
     <state x="958" y="456" width="1227" height="644" key="find.popup/0.27.2560.1413@0.27.2560.1413" timestamp="1575618458075" />
     <state x="1025" y="360" width="500" height="754" key="refactoring.ChangeSignatureDialog" timestamp="1575234565623">
       <screen x="0" y="27" width="2560" height="1413" />
@@ -516,9 +568,10 @@
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="944" y="342" key="run.anything.popup/0.27.2560.1413@0.27.2560.1413" timestamp="1575403117324" />
-    <state x="943" y="349" width="672" height="678" key="search.everywhere.popup" timestamp="1575398658921">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state x="530" y="210" width="672" height="442" key="search.everywhere.popup" timestamp="1575644197136">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
+    <state x="530" y="210" width="672" height="442" key="search.everywhere.popup/0.0.1440.920@0.0.1440.920" timestamp="1575644197136" />
     <state x="943" y="349" width="672" height="678" key="search.everywhere.popup/0.27.2560.1413@0.27.2560.1413" timestamp="1575398658921" />
   </component>
   <component name="antWorkspaceConfiguration">

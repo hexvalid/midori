@@ -7,10 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="org.apache.httpcomponents:httpclient:4.5.10" level="project" />
-    <orderEntry type="library" name="org.apache.commons:commons-lang3:3.9" level="project" />
-    <orderEntry type="library" name="org.xerial:sqlite-jdbc:3.28.0" level="project" />
-    <orderEntry type="library" name="org.jsoup:jsoup:1.12.1" level="project" />
-    <orderEntry type="library" name="org.json:json:20190722" level="project" />
+    <orderEntry type="library" name="org.apache.commons:commons-lang3:3.91" level="project" />
+    <orderEntry type="library" name="org.apache.httpcomponents:httpclient:4.5.101" level="project" />
+    <orderEntry type="library" name="org.json:json:201907221" level="project" />
+    <orderEntry type="library" name="org.jsoup:jsoup:1.12.11" level="project" />
+    <orderEntry type="library" name="org.xerial:sqlite-jdbc:3.28.01" level="project" />
   </component>
 </module>

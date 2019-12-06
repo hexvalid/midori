@@ -7,26 +7,26 @@ import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
-
 public class Main extends Application {
     static MainController Controller;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        System.setProperty("prism.allowhidpi", "false");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
-        Font.loadFont(new FileInputStream(new File("/home/anon/IdeaProjects/midori/src/com/midori/ui/fonts/RobotoMono-Regular.ttf")), 10);
-        Font.loadFont(new FileInputStream(new File("/home/anon/IdeaProjects/midori/src/com/midori/ui/fonts/RobotoMono-Bold.ttf")), 10);
-        //todo: fonts
+        Font.loadFont(getClass().getResourceAsStream("/com/midori/ui/res/fonts/RobotoMono-Regular.ttf"), 10);
+        Font.loadFont(getClass().getResourceAsStream("/com/midori/ui/res/fonts/RobotoMono-Bold.ttf"), 10);
+        Font.loadFont(getClass().getResourceAsStream("/com/midori/ui/res/fonts/Roboto-Regular.ttf"), 10);
+        Font.loadFont(getClass().getResourceAsStream("/com/midori/ui/res/fonts/Roboto-Bold.ttf"), 10);
 
         Parent root = loader.load();
+        root.getStylesheets().add("/com/midori/ui/res/style.css");
         Controller = loader.getController();
         primaryStage.setTitle("midori");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.setFullScreen(false);
+
         primaryStage.show();
     }
 

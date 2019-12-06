@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Engine {
@@ -88,7 +89,7 @@ public class Engine {
                 params.add(new BasicNameValuePair("referrer", String.valueOf(account.referrerProperty().get())));
                 //@parseller:0
                 params.add(new BasicNameValuePair("token", StringUtils.substringBetween(mainBody, "signup_token = '", "'")));
-                Captcha.Response cr = solveBotdetectCaptcha(account);
+                Captcha.Response cr = solveBotdetectCaptcha(account, 1);
                 cid = cr.taskId;
                 params.addAll(cr.params);
                 account.signUpDate = new java.sql.Date(System.currentTimeMillis());
@@ -363,6 +364,8 @@ public class Engine {
                     "This roll may cause break anything!'");
         }
         try {
+            AtomicInteger cid1 = new AtomicInteger();
+            AtomicInteger cid2 = new AtomicInteger();
             Captcha.Response cr = null;
             account.openHTTPClient();
             List<NameValuePair> params = new ArrayList<>();
@@ -375,13 +378,31 @@ public class Engine {
                     Log.Print(Log.t.DBG, account.logDomain() + "Rolling with RP...");
                     //todo?
                 } else {
-                    Log.Print(Log.t.DBG, account.logDomain() + "Rolling with captcha...");
-                    params.add(new BasicNameValuePair("pwc", "0"));
-                    cr = solveBotdetectCaptcha(account);
-                    params.addAll(cr.params);
+                    ExecutorService pool = Executors.newFixedThreadPool(2);
+                    CountDownLatch latch = new CountDownLatch(2);
+                    pool.execute(() -> {
+                        try {
+                            Captcha.Response cr1 = solveBotdetectCaptcha(account, 1);
+                            cid1.set(cr1.taskId);
+                            params.addAll(cr1.params);
+                        } catch (URISyntaxException | IOException | InterruptedException e) {
+                            Log.Print(Log.t.CRI, "Roll thread error: " + e.getMessage());
+                        }
+                        latch.countDown();
+                    });
+                    pool.execute(() -> {
+                        try {
+                            Captcha.Response cr2 = solveBotdetectCaptcha(account, 2);
+                            cid2.set(cr2.taskId);
+                            params.addAll(cr2.params);
+                        } catch (URISyntaxException | IOException | InterruptedException e) {
+                            Log.Print(Log.t.CRI, "Roll thread error: " + e.getMessage());
+                        }
+                        latch.countDown();
+                    });
+                    latch.await();
+                    pool.shutdown();
                     params.add(new BasicNameValuePair("g_recaptcha_response", ""));
-
-
                 }
             } else {
                 Log.Print(Log.t.UNK, account.logDomain() + "Unknown solving type! " + account.captchaType);
@@ -448,22 +469,17 @@ public class Engine {
                     }
                 }
             }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         } finally {
             account.closeHTTPClient();
         }
     }
 
 
-    public static Captcha.Response solveBotdetectCaptcha(Account account) throws URISyntaxException, IOException, InterruptedException {
-
-        Log.Print(Log.t.DBG, "Generating BotDetect Captcha...");
-
+    public static Captcha.Response solveBotdetectCaptcha(Account account, int i) throws URISyntaxException, IOException, InterruptedException {
         Captcha.Response cr = new Captcha.Response();
         cr.params = new ArrayList<>();
         String random = null, image, result;
-
+        Log.Print(Log.t.DBG, "Generating BotDetect Captcha (#" + i + ")...");
         HttpGet get1 = new HttpGet(URL.api);
         get1.setURI(new URIBuilder(get1.getURI())
                 .addParameter("op", "generate_captchasnet")
@@ -480,8 +496,7 @@ public class Engine {
             }
         }
 
-        Thread.sleep(1000);
-        Log.Print(Log.t.DBG, "Getting BotDetect Captcha...");
+        Log.Print(Log.t.DBG, "Getting BotDetect Captcha (#" + i + ")...");
         HttpGet get2 = new HttpGet(URL.botdetect);
         get2.setURI(new URIBuilder(get2.getURI()).addParameter("random", random).build());
         get2.addHeader(Header.acceptImage);
@@ -492,10 +507,12 @@ public class Engine {
                 image = new String(Base64.getEncoder().encode(EntityUtils.toByteArray(entity)));
                 cr.taskId = Captcha.sendImageCaptcha(image);
                 result = Captcha.checkCaptcha(cr.taskId, false);
-                cr.params.add(new BasicNameValuePair("botdetect_random", ""));
-                cr.params.add(new BasicNameValuePair("botdetect_response", ""));
-                cr.params.add(new BasicNameValuePair("botdetect_random2", random));
-                cr.params.add(new BasicNameValuePair("botdetect_response2", result));
+                String suffix = "";
+                if (i > 1) {
+                    suffix = String.valueOf(i);
+                }
+                cr.params.add(new BasicNameValuePair("botdetect_random" + suffix, random));
+                cr.params.add(new BasicNameValuePair("botdetect_response" + suffix, result));
             }
         }
         return cr;
