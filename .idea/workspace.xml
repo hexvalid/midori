@@ -7,31 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="update">
-      <change afterPath="$PROJECT_DIR$/server-setup" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Boost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/OTP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Prefs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/f0404a71-e1c6-4bf9-b794-2dba16956afa.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f0404a71-e1c6-4bf9-b794-2dba16956afa.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/AnticaptchaBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Api/CustomCaptcha.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Api/FunCaptcha.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Api/GeeTestProxyless.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Api/ImageToText.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Api/NoCaptcha.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Api/NoCaptchaProxyless.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Api/RecaptchaV3Proxyless.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/ApiResponse/BalanceResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/ApiResponse/CreateTaskResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/ApiResponse/TaskResultResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Helper/DebugHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Helper/HttpHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Helper/JsonHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Helper/StringHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Http/HttpRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Http/HttpResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/IAnticaptchaTaskProtocol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anti_captcha/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Captcha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Captcha.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Engine.java" afterDir="false" />
@@ -40,9 +20,7 @@
       <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/database/DBAccTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/database/DBAccTools.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/database/DBCon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/database/DBCon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/ui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/Tools.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/ui/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,6 +64,21 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
         <item name="accounts: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="midori.db [bak]" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="midori.db [bak]" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="midori.db [bak]" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -184,7 +177,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT&#10;JavaScript&#10;HTML&#10;JAVA" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON&#10;HTML&#10;TEXT&#10;JavaScript" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -192,7 +185,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -340,7 +333,36 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:midori.db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:midori.db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@6bed228f" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:midori.db [bak]" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:midori.db [bak]" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@189495e6" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:midori.db [bak]" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@283ece67" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:midori.db [bak]" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@11fbdc25" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -370,10 +392,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="738" y="391" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575460931356">
+    <state x="738" y="391" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575538606897">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="738" y="391" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575460931356" />
+    <state x="738" y="391" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575538606897" />
     <state x="995" y="538" width="614" height="398" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575227129109">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
@@ -386,78 +408,90 @@
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="1007" y="523" width="525" height="441" key="#com.intellij.ide.util.TreeClassChooserDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575051056655" />
-    <state x="662" y="42" width="1280" height="1251" key="CommitChangelistDialog2" timestamp="1575303054351">
+    <state x="662" y="42" width="1280" height="1251" key="CommitChangelistDialog2" timestamp="1575462544848">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="662" y="42" width="1280" height="1251" key="CommitChangelistDialog2/0.27.2560.1413@0.27.2560.1413" timestamp="1575303054351" />
-    <state x="917" y="479" width="719" height="521" key="FileChooserDialogImpl" timestamp="1575300213645">
+    <state x="662" y="42" width="1280" height="1251" key="CommitChangelistDialog2/0.27.2560.1413@0.27.2560.1413" timestamp="1575462544848" />
+    <state x="100" y="127" width="2360" height="1213" key="DiffContextDialog" timestamp="1575580290877">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="917" y="479" width="719" height="521" key="FileChooserDialogImpl/0.27.2560.1413@0.27.2560.1413" timestamp="1575300213645" />
-    <state width="2514" height="387" key="GridCell.Tab.0.bottom" timestamp="1575461323448">
+    <state x="100" y="127" width="2360" height="1213" key="DiffContextDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575580290877" />
+    <state x="917" y="479" width="719" height="521" key="FileChooserDialogImpl" timestamp="1575538604209">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="2514" height="387" key="GridCell.Tab.0.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1575461323448" />
-    <state width="2514" height="387" key="GridCell.Tab.0.center" timestamp="1575461323448">
+    <state x="917" y="479" width="719" height="521" key="FileChooserDialogImpl/0.27.2560.1413@0.27.2560.1413" timestamp="1575538604209" />
+    <state width="2514" height="307" key="GridCell.Tab.0.bottom" timestamp="1575618234274">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="2514" height="387" key="GridCell.Tab.0.center/0.27.2560.1413@0.27.2560.1413" timestamp="1575461323448" />
-    <state width="2514" height="387" key="GridCell.Tab.0.left" timestamp="1575461323447">
+    <state width="2514" height="307" key="GridCell.Tab.0.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1575618234274" />
+    <state width="2514" height="307" key="GridCell.Tab.0.center" timestamp="1575618234273">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="2514" height="387" key="GridCell.Tab.0.left/0.27.2560.1413@0.27.2560.1413" timestamp="1575461323447" />
-    <state width="2514" height="387" key="GridCell.Tab.0.right" timestamp="1575461323448">
+    <state width="2514" height="307" key="GridCell.Tab.0.center/0.27.2560.1413@0.27.2560.1413" timestamp="1575618234273" />
+    <state width="2514" height="307" key="GridCell.Tab.0.left" timestamp="1575618234273">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="2514" height="387" key="GridCell.Tab.0.right/0.27.2560.1413@0.27.2560.1413" timestamp="1575461323448" />
-    <state width="2514" height="346" key="GridCell.Tab.1.bottom" timestamp="1575388265643">
+    <state width="2514" height="307" key="GridCell.Tab.0.left/0.27.2560.1413@0.27.2560.1413" timestamp="1575618234273" />
+    <state width="2514" height="307" key="GridCell.Tab.0.right" timestamp="1575618234273">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="2514" height="346" key="GridCell.Tab.1.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1575388265643" />
-    <state width="2514" height="346" key="GridCell.Tab.1.center" timestamp="1575388265643">
+    <state width="2514" height="307" key="GridCell.Tab.0.right/0.27.2560.1413@0.27.2560.1413" timestamp="1575618234273" />
+    <state width="2514" height="484" key="GridCell.Tab.1.bottom" timestamp="1575578425278">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="2514" height="346" key="GridCell.Tab.1.center/0.27.2560.1413@0.27.2560.1413" timestamp="1575388265643" />
-    <state width="2514" height="346" key="GridCell.Tab.1.left" timestamp="1575388265643">
+    <state width="2514" height="484" key="GridCell.Tab.1.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1575578425278" />
+    <state width="2514" height="484" key="GridCell.Tab.1.center" timestamp="1575578425278">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="2514" height="346" key="GridCell.Tab.1.left/0.27.2560.1413@0.27.2560.1413" timestamp="1575388265643" />
-    <state width="2514" height="346" key="GridCell.Tab.1.right" timestamp="1575388265643">
+    <state width="2514" height="484" key="GridCell.Tab.1.center/0.27.2560.1413@0.27.2560.1413" timestamp="1575578425278" />
+    <state width="2514" height="484" key="GridCell.Tab.1.left" timestamp="1575578425278">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state width="2514" height="346" key="GridCell.Tab.1.right/0.27.2560.1413@0.27.2560.1413" timestamp="1575388265643" />
+    <state width="2514" height="484" key="GridCell.Tab.1.left/0.27.2560.1413@0.27.2560.1413" timestamp="1575578425278" />
+    <state width="2514" height="484" key="GridCell.Tab.1.right" timestamp="1575578425278">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state width="2514" height="484" key="GridCell.Tab.1.right/0.27.2560.1413@0.27.2560.1413" timestamp="1575578425278" />
     <state x="1159" y="661" width="242" height="151" key="GuiceyIDEA.NewGuiceProvider" timestamp="1575047176692">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="1159" y="661" width="242" height="151" key="GuiceyIDEA.NewGuiceProvider/0.27.2560.1413@0.27.2560.1413" timestamp="1575047176692" />
-    <state x="947" y="445" width="656" height="583" key="RollbackChangesDialog" timestamp="1575136060891">
+    <state width="257" height="520" key="HiddenNamespacesPopup" timestamp="1575538586563">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="947" y="445" width="656" height="583" key="RollbackChangesDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575136060891" />
-    <state x="588" y="277" width="1367" height="737" key="SettingsEditor" timestamp="1575461284247">
+    <state width="257" height="520" key="HiddenNamespacesPopup/0.27.2560.1413@0.27.2560.1413" timestamp="1575538586563" />
+    <state x="947" y="445" width="656" height="583" key="RollbackChangesDialog" timestamp="1575614670090">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="588" y="277" width="1367" height="737" key="SettingsEditor/0.27.2560.1413@0.27.2560.1413" timestamp="1575461284247" />
+    <state x="947" y="445" width="656" height="583" key="RollbackChangesDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575614670090" />
+    <state x="588" y="277" width="1367" height="737" key="SettingsEditor" timestamp="1575570233428">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="588" y="277" width="1367" height="737" key="SettingsEditor/0.27.2560.1413@0.27.2560.1413" timestamp="1575570233428" />
     <state x="1065" y="539" width="570" height="174" key="VCS.ChangelistChooser" timestamp="1575136230414">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="1065" y="539" width="570" height="174" key="VCS.ChangelistChooser/0.27.2560.1413@0.27.2560.1413" timestamp="1575136230414" />
-    <state x="875" y="469" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1575137387575">
+    <state x="875" y="469" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1575462547118">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="875" y="469" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.2560.1413@0.27.2560.1413" timestamp="1575137387575" />
-    <state x="992" y="371" width="566" height="731" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1575231371212">
+    <state x="875" y="469" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.2560.1413@0.27.2560.1413" timestamp="1575462547118" />
+    <state x="992" y="371" width="566" height="731" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1575569755219">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="992" y="371" width="566" height="731" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575231371212" />
-    <state x="21" y="16" width="2360" height="1213" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1575388647809">
+    <state x="992" y="371" width="566" height="731" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575569755219" />
+    <state x="21" y="27" width="2349" height="1213" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1575611922144">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="21" y="16" width="2360" height="1213" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575388647809" />
-    <state x="940" y="561" key="com.intellij.ide.util.TipDialog" timestamp="1575452814883">
+    <state x="21" y="27" width="2349" height="1213" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575611922144" />
+    <state x="100" y="127" width="2360" height="1213" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1575574406317">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="940" y="561" key="com.intellij.ide.util.TipDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575452814883" />
+    <state x="100" y="127" width="2360" height="1213" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575574406317" />
+    <state x="940" y="561" key="com.intellij.ide.util.TipDialog" timestamp="1575609440730">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="940" y="561" key="com.intellij.ide.util.TipDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575609440730" />
     <state x="1522" y="813" width="645" height="216" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1575300314515">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
@@ -466,10 +500,14 @@
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="759" y="313" width="1031" height="847" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.2560.1413@0.27.2560.1413" timestamp="1575319767625" />
-    <state x="958" y="456" width="1227" height="644" key="find.popup" timestamp="1575460026956">
+    <state x="1013" y="497" width="524" height="487" key="extract.method.dialog" timestamp="1575610846219">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="958" y="456" width="1227" height="644" key="find.popup/0.27.2560.1413@0.27.2560.1413" timestamp="1575460026956" />
+    <state x="1013" y="497" width="524" height="487" key="extract.method.dialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575610846219" />
+    <state x="958" y="456" width="1227" height="644" key="find.popup" timestamp="1575618458075">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="958" y="456" width="1227" height="644" key="find.popup/0.27.2560.1413@0.27.2560.1413" timestamp="1575618458075" />
     <state x="1025" y="360" width="500" height="754" key="refactoring.ChangeSignatureDialog" timestamp="1575234565623">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
@@ -482,48 +520,6 @@
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="943" y="349" width="672" height="678" key="search.everywhere.popup/0.27.2560.1413@0.27.2560.1413" timestamp="1575398658921" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.js</url>
-          <line>1209</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.js</url>
-          <line>1210</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.js</url>
-          <line>108</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.js</url>
-          <line>109</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.js</url>
-          <line>110</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.js</url>
-          <line>83</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/com/midori/bot/Account.java</url>
-          <line>39</line>
-          <properties field="balance" class="com.midori.bot.Account" />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

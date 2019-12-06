@@ -75,8 +75,7 @@
                                     </HBox>
                                     <HBox spacing="8.0">
                                        <children>
-                                          <TextField fx:id="_acm_rcv3" prefWidth="20.0" promptText="recaptcha v3 token" HBox.hgrow="SOMETIMES" />
-                                          <Button mnemonicParsing="false" onAction="#_sendV3" text="Send" HBox.hgrow="ALWAYS" />
+                                          <Button fx:id="_acm_v3" mnemonicParsing="false" onAction="#_sendV3" text="Send reCAPTCHA v3" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" spacing="16.0">
@@ -240,6 +239,8 @@
                                     <Button layoutX="642.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dShuffle" text="shuffle" />
                                     <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dStartAll" text="start all" />
                                     <Button layoutX="93.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dStopAll" text="stop all" />
+                                    <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#_dLock" text="LOCK" />
+                                    <Button layoutX="82.0" layoutY="14.0" mnemonicParsing="false" onAction="#_dUnlock" text="UNLOCK" />
                                  </children>
                               </AnchorPane>
                           </content>

@@ -25,6 +25,7 @@ public class Tasks {
                         Engine.Home(account, null, Engine.URL.home);
                         this.account.set_Status("Rolling");
                         Engine.Roll(account);
+                        System.out.println("OK");
                     } else {
                         this.account.set_Status("Waiting");
                         Thread.sleep(account.remaingMillisForRoll());
@@ -47,8 +48,8 @@ public class Tasks {
                 } catch (Engine.RollError e) {
                     this.account.set_Status("Error: " + e.getMessage());
                     Log.Print(Log.t.ERR, account.logDomain() + e.getMessage());
-                    e.printStackTrace();
                     if (e.getMessage().contains("Captcha is incorrect")) {
+                        System.out.println("ERR");
                         Log.Print(Log.t.WRN, account.logDomain() + "Account got roll (captcha) error. Trying again...");
                     } else {
                         Log.Print(Log.t.WRN, account.logDomain() + "Account got roll error. Will be wait 1 minutes...");
@@ -59,6 +60,7 @@ public class Tasks {
                             Thread.currentThread().interrupt();
                             return;
                         }
+                        e.printStackTrace();
                     }
                 } finally {
                     try {

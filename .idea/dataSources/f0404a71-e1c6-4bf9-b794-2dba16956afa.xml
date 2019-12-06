@@ -116,9 +116,9 @@
       <Position>25</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="34" parent="6" name="sleepTimes">
+    <column id="34" parent="6" name="lastV3Date">
       <Position>26</Position>
-      <DataType>text|0s</DataType>
+      <DataType>date|0s</DataType>
     </column>
     <column id="35" parent="6" name="fpLatencyTimes">
       <Position>27</Position>

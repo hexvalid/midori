@@ -58,7 +58,7 @@ public class Account {
     public boolean useRPForFP;
     public String headerUserAgent;
     public String headerAcceptLanguage;
-    public String sleepTimes;
+    public Date lastV3Date;
     public String fpLatencyTimes;
     private final StringProperty boosts;
     private final StringProperty proxy; //for disable: 'OFF', for debug: 'DEBUG'.

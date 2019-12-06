@@ -1,9 +1,6 @@
 package com.midori.ui;
 
-import com.midori.bot.Account;
-import com.midori.bot.Boost;
-import com.midori.bot.Engine;
-import com.midori.bot.Rune;
+import com.midori.bot.*;
 import com.midori.database.DBAccTools;
 import com.midori.database.DBCon;
 import com.midori.database.DBSetTools;
@@ -23,6 +20,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -170,7 +168,7 @@ public class MainController implements Initializable {
     private Label _acm_tfa_status;
 
     @FXML
-    private TextField _acm_rcv3;
+    private Button _acm_v3;
 
     //Other vars
     static List<Account> accounts;
@@ -576,10 +574,20 @@ public class MainController implements Initializable {
     void _sendV3() {
         new Thread(() -> {
             try {
-                Engine.RecordRecaptchaV3(_atc.getSelectionModel().getSelectedItem(), _acm_rcv3.getText());
-            } catch (IOException | URISyntaxException e) {
+                _atc.getSelectionModel().getSelectedItem().openHTTPClient();
+
+                Platform.runLater(() -> _acm_v3.setDisable(true));
+                Engine.RecordRecaptchaV3(_atc.getSelectionModel().getSelectedItem());
+            } catch (IOException | URISyntaxException | InterruptedException e) {
                 Log.Print(Log.t.ERR, e.getMessage());
                 e.printStackTrace();
+            } finally {
+                Platform.runLater(() -> _acm_v3.setDisable(false));
+                try {
+                    _atc.getSelectionModel().getSelectedItem().closeHTTPClient();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }).start();
     }
@@ -607,8 +615,12 @@ public class MainController implements Initializable {
                 a.lastFPDate = new java.sql.Date(DateUtils.addSeconds(new Date(), -RandomUtils.nextInt(1, 3600)).getTime());
                 DBAccTools.UpdateLastFPDate(a);
             }
+            a.lastV3Date = new java.sql.Date(DateUtils.addMinutes(new Date(), -RandomUtils.nextInt(1, Prefs.RECAPTCHA_V3_TIME_MINUTES)).getTime());
+            DBAccTools.UpdateAccountForRoll(a);
         }
         Log.Print(Log.t.DBG, "Shuffle end.");
+
+
     }
 
     public void _dStartAll() {
@@ -630,5 +642,13 @@ public class MainController implements Initializable {
     public void _acmRedeem() throws IOException, URISyntaxException {
         Log.Print(Log.t.DBG, "Redeeming...");
         Engine.RedeemRewards(_atc.getSelectionModel().getSelectedItem(), _acm_boosts.getSelectionModel().getSelectedItem());
+    }
+
+    public void _dLock() {
+        Engine.LOCK.lock();
+    }
+
+    public void _dUnlock() {
+        Engine.LOCK.unlock();
     }
 }

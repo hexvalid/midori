@@ -23,6 +23,7 @@ public class Rune {
     final public static String baseBytes = "0123456789abcdef";
     final public static String seedBytes = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     final public static String seedFake = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+    final public static String fake1 = "abcdefghijklmnopqrstuvwxyz";
 
 
     public static HashMap<String, Integer> timeZoneOffsetMap = new HashMap<String, Integer>() {{

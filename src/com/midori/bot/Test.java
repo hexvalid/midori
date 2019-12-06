@@ -3,6 +3,7 @@ package com.midori.bot;
 import com.midori.database.DBAccTools;
 import com.midori.database.DBCon;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -15,16 +16,9 @@ import java.util.concurrent.Executors;
 public class Test {
     public static void main(String[] args) throws InterruptedException, IOException, Engine.LoginError, URISyntaxException, SQLException, GeneralSecurityException {
 
-        String a = "s::34154302@Freebitco.in:56ZFNLSSRKIV3HXH";
-
-        String[] b = a.split(":");
-
-        System.out.println(b[b.length - 1]);
-//03AOLTBLRBia8K3gvHa41lflf0HedDdosxmMV1r71UxOUPbUDO2hJjYiXRYVlNmyIbABRphtDA8p2a0U-QEvA24CS-nctds7-hpQIA1_48d4FQE3tjRwAFgltrD13OP-ho8co7wSsEGEOwjvvOhkDl-UW5QptSrabu0CubEGvW5H4yNwSnvctrZWnnoFZsyUVgn1ctoTSmXI4DOH0bpMEJbKJzgHSwbMxkVhgjClvrqnGYFMxhtUGgJhFiYxxlwZJNofxiiBeebGTXB90xtWwxSiTNQQ8OJzl4FcX_GwhWCZQUKZCHF61_w7KzmTPA2wvUAXyjMq_DL0ZRBw4yLfYnw3uGUiJJIecKf_z4CYkyTAR4D7KqJiNIQgfbou26IFjiwOWNDjxmUVrmGycH_0DRh-mt96TX2CsBhKexfiiqSPh4supfdcIsJKa763GRRQfK36Ia_05SLJ7DM5JIM92umJQBxCjYNy_W4Hvwe7arTvfPDm4vtIx6ayw
-        //20331396cebe016691c792cf1417efaa4de27f5af9f76bd31c943da13ae8fca6
-        //a847e1da40dae9bdafaf08985cfb5ff1c38f1930f0c51492796db2170eaadb1b
-        System.out.println(RandomStringUtils.random(505, Rune.seedFake));
-
+        System.out.println(OTP.generatePIN("3YYUAE6ZZ4SYG325"));
+        System.out.println(RandomStringUtils.random(32, Rune.baseBytes));
+        System.out.println(RandomUtils.nextLong(1111111111L, 9999999999L));
         System.exit(1);
 /*     Login : erkanmdr@gmail.com
 

@@ -38,7 +38,7 @@ public class DBAccTools {
         pstmt.setBoolean(23, account.useRPForFP);
         pstmt.setString(24, account.headerUserAgent);
         pstmt.setString(25, account.headerAcceptLanguage);
-        pstmt.setString(26, account.sleepTimes);
+        pstmt.setDate(26, account.lastV3Date);
         pstmt.setString(27, account.fpLatencyTimes);
         pstmt.setString(28, account.boostsProperty().get());
         pstmt.setString(29, account.proxyProperty().get());
@@ -80,7 +80,7 @@ public class DBAccTools {
             account.useRPForFP = rs.getBoolean("useRPForFP");
             account.headerUserAgent = rs.getString("headerUserAgent");
             account.headerAcceptLanguage = rs.getString("headerAcceptLanguage");
-            account.sleepTimes = rs.getString("sleepTimes");
+            account.lastV3Date = rs.getDate("lastV3Date");
             account.fpLatencyTimes = rs.getString("fpLatencyTimes");
             account.setBoosts(rs.getString("boosts"));
             account.setProxy(rs.getString("proxy"));
@@ -105,8 +105,10 @@ public class DBAccTools {
         pstmt.setString(8, account.stats);
         pstmt.setBoolean(9, account.disableLottery);
         pstmt.setBoolean(10, account.tfaEnabled);
-        pstmt.setBytes(11, SerializationUtils.serialize(account.cookieStore));
-        pstmt.setInt(12, account.idProperty().get());
+        pstmt.setDate(11, account.lastV3Date);
+        pstmt.setString(12, account.boostsProperty().get());
+        pstmt.setBytes(13, SerializationUtils.serialize(account.cookieStore));
+        pstmt.setInt(14, account.idProperty().get());
         pstmt.executeUpdate();
     }
 

@@ -10,6 +10,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -33,7 +34,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Engine {
 
@@ -56,6 +57,9 @@ public class Engine {
         final private static BasicHeader xreqXML = new BasicHeader("X-Requested-With", "XMLHttpRequest");
         final private static String xCsrfToken = "X-Csrf-Token";
     }
+
+
+    public static ReentrantLock LOCK = new ReentrantLock();
 
 
     public static void Login(Account account, boolean signup) throws IOException, LoginError, URISyntaxException, InterruptedException {
@@ -84,7 +88,7 @@ public class Engine {
                 params.add(new BasicNameValuePair("referrer", String.valueOf(account.referrerProperty().get())));
                 //@parseller:0
                 params.add(new BasicNameValuePair("token", StringUtils.substringBetween(mainBody, "signup_token = '", "'")));
-                Captcha.Response cr = solveBotdetectCaptcha(account, 1);
+                Captcha.Response cr = solveBotdetectCaptcha(account);
                 cid = cr.taskId;
                 params.addAll(cr.params);
                 account.signUpDate = new java.sql.Date(System.currentTimeMillis());
@@ -194,16 +198,17 @@ public class Engine {
             }
 
             //MultiThreading Now
-            ExecutorService pool = Executors.newFixedThreadPool(5);
-            CountDownLatch latch = new CountDownLatch(5);
+            ExecutorService pool = Executors.newFixedThreadPool(6);
+            CountDownLatch latch = new CountDownLatch(6);
             JSONObject stats = new JSONObject();
+
 
             pool.execute(() -> {
                 Log.Print(Log.t.DBG, account.logDomain() + "Loading initial stats...");
                 try {
                     HttpGet get = new HttpGet(URL.statsNewPrivate);
                     get.setURI(new URIBuilder(get.getURI())
-                            .addParameter("u", account.idProperty().asString().get())
+                            .addParameter("u", String.valueOf(account.idProperty().get()))
                             .addParameter("p", account.socketPassword)
                             .addParameter("f", "user_stats_initial")
                             .addParameter("csrf_token", account.getCSRFToken()).build());
@@ -302,7 +307,7 @@ public class Engine {
                 try {
                     HttpGet get = new HttpGet(URL.statsNewPrivate);
                     get.setURI(new URIBuilder(get.getURI())
-                            .addParameter("u", account.idProperty().asString().get())
+                            .addParameter("u", String.valueOf(account.idProperty().get()))
                             .addParameter("p", account.socketPassword)
                             .addParameter("f", "user_stats")
                             .addParameter("csrf_token", account.getCSRFToken()).build());
@@ -325,11 +330,28 @@ public class Engine {
                 }
             });
 
+
+            pool.execute(() -> {
+                try {
+                    if (account.captchaType == 1 || account.lastV3Date == null
+                            || DateUtils.addMinutes(account.lastV3Date, Prefs.RECAPTCHA_V3_TIME_MINUTES).before(new java.util.Date())) {
+                        RecordRecaptchaV3(account);
+                        account.lastV3Date = new java.sql.Date(System.currentTimeMillis());
+                    }
+                } catch (URISyntaxException | IOException | InterruptedException e) {
+                    Log.Print(Log.t.CRI, account.logDomain() + "Error at multithread: " + e);
+                    e.printStackTrace();
+                } finally {
+                    latch.countDown();
+                }
+            });
+
             latch.await();
             pool.shutdown();
 
             account.stats = stats.toString();
             Log.Print(Log.t.SCS, account.logDomain() + "Account is homed");
+
         } finally {
             account.closeHTTPClient();
         }
@@ -341,8 +363,7 @@ public class Engine {
                     "This roll may cause break anything!'");
         }
         try {
-            AtomicInteger cid1 = new AtomicInteger();
-            AtomicInteger cid2 = new AtomicInteger();
+            Captcha.Response cr = null;
             account.openHTTPClient();
             List<NameValuePair> params = new ArrayList<>();
             if (account.captchaType == 0) {
@@ -356,36 +377,17 @@ public class Engine {
                 } else {
                     Log.Print(Log.t.DBG, account.logDomain() + "Rolling with captcha...");
                     params.add(new BasicNameValuePair("pwc", "0"));
-                    ExecutorService pool = Executors.newFixedThreadPool(2);
-                    CountDownLatch latch = new CountDownLatch(2);
-                    pool.execute(() -> {
-                        try {
-                            Captcha.Response cr1 = solveBotdetectCaptcha(account, 1);
-                            cid1.set(cr1.taskId);
-                            params.addAll(cr1.params);
-                        } catch (URISyntaxException | IOException | InterruptedException e) {
-                            Log.Print(Log.t.CRI, "Roll thread error: " + e.getMessage());
-                        }
-                        latch.countDown();
-                    });
-                    pool.execute(() -> {
-                        try {
-                            Captcha.Response cr2 = solveBotdetectCaptcha(account, 2);
-                            cid2.set(cr2.taskId);
-                            params.addAll(cr2.params);
-                        } catch (URISyntaxException | IOException | InterruptedException e) {
-                            Log.Print(Log.t.CRI, "Roll thread error: " + e.getMessage());
-                        }
-                        latch.countDown();
-                    });
-                    latch.await();
-                    pool.shutdown();
+                    cr = solveBotdetectCaptcha(account);
+                    params.addAll(cr.params);
+                    params.add(new BasicNameValuePair("g_recaptcha_response", ""));
+
+
                 }
             } else {
                 Log.Print(Log.t.UNK, account.logDomain() + "Unknown solving type! " + account.captchaType);
+                account.set_Status("Unknown solving type!");
                 if (account.emailConfirmed) {
-
-
+                    Thread.sleep(10000 * 60 * 1000);
                 } else {
                     throw new RollError(String.valueOf(account.captchaType));
                 }
@@ -399,6 +401,7 @@ public class Engine {
             params.add(new BasicNameValuePair("csrf_token", account.getCSRFToken()));
             params.add(new BasicNameValuePair("op", "free_play"));
             params.add(new BasicNameValuePair("fingerprint", account.fingerprint));
+
             params.add(new BasicNameValuePair("client_seed", RandomStringUtils.random(16, Rune.seedBytes)));
             params.add(new BasicNameValuePair("fingerprint2", String.valueOf(account.fingerprint2)));
             params.add(new BasicNameValuePair(account.tokenName, account.token));
@@ -432,9 +435,12 @@ public class Engine {
                         //todo: check same rolled ip error and calculate wait time
                     } else if (body.charAt(0) == 'e') {
                         if (body.contains("Captcha is incorrect")) {
-                            Captcha.reportIncorrectImageCaptcha(cid1.get());
-                            Captcha.reportIncorrectImageCaptcha(cid2.get());
+                            if (cr != null) {
+                                Captcha.reportIncorrectImageCaptcha(cr.taskId);
+                            }
                             throw new RollError("Captcha is incorrect");
+                        } else if (body.contains("Someone has already played")) {
+                            Thread.sleep(60 * 60 * 1000);
                         }
                         throw new RollError(body);
                     } else {
@@ -442,17 +448,22 @@ public class Engine {
                     }
                 }
             }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         } finally {
             account.closeHTTPClient();
         }
     }
 
 
-    public static Captcha.Response solveBotdetectCaptcha(Account account, int i) throws URISyntaxException, IOException, InterruptedException {
+    public static Captcha.Response solveBotdetectCaptcha(Account account) throws URISyntaxException, IOException, InterruptedException {
+
+        Log.Print(Log.t.DBG, "Generating BotDetect Captcha...");
+
         Captcha.Response cr = new Captcha.Response();
         cr.params = new ArrayList<>();
         String random = null, image, result;
-        Log.Print(Log.t.DBG, "Generating BotDetect Captcha (#" + i + ")...");
+
         HttpGet get1 = new HttpGet(URL.api);
         get1.setURI(new URIBuilder(get1.getURI())
                 .addParameter("op", "generate_captchasnet")
@@ -469,7 +480,8 @@ public class Engine {
             }
         }
 
-        Log.Print(Log.t.DBG, "Getting BotDetect Captcha (#" + i + ")...");
+        Thread.sleep(1000);
+        Log.Print(Log.t.DBG, "Getting BotDetect Captcha...");
         HttpGet get2 = new HttpGet(URL.botdetect);
         get2.setURI(new URIBuilder(get2.getURI()).addParameter("random", random).build());
         get2.addHeader(Header.acceptImage);
@@ -479,13 +491,11 @@ public class Engine {
             if (entity != null) {
                 image = new String(Base64.getEncoder().encode(EntityUtils.toByteArray(entity)));
                 cr.taskId = Captcha.sendImageCaptcha(image);
-                result = Captcha.checkCaptcha(cr.taskId);
-                String suffix = "";
-                if (i > 1) {
-                    suffix = String.valueOf(i);
-                }
-                cr.params.add(new BasicNameValuePair("botdetect_random" + suffix, random));
-                cr.params.add(new BasicNameValuePair("botdetect_response" + suffix, result));
+                result = Captcha.checkCaptcha(cr.taskId, false);
+                cr.params.add(new BasicNameValuePair("botdetect_random", ""));
+                cr.params.add(new BasicNameValuePair("botdetect_response", ""));
+                cr.params.add(new BasicNameValuePair("botdetect_random2", random));
+                cr.params.add(new BasicNameValuePair("botdetect_response2", result));
             }
         }
         return cr;
@@ -621,33 +631,31 @@ public class Engine {
         }
     }
 
-    public static void RecordRecaptchaV3(Account account, String token) throws IOException, URISyntaxException {
-        Log.Print(Log.t.DBG, account.logDomain() + "Sending ReCaptcha v3 token...");
+    public static void RecordRecaptchaV3(Account account) throws IOException, URISyntaxException, InterruptedException {
+        int taskId = Captcha.sendRecaptchaV3();
+        String cr = Captcha.checkCaptcha(taskId, true);
+        Log.Print(Log.t.DBG, account.logDomain() + "Sending reCAPTCHA v3 token...");
         try {
-            account.openHTTPClient();
-            try {
-                HttpGet get = new HttpGet(URL.api);
-                get.setURI(new URIBuilder(get.getURI())
-                        .addParameter("op", "record_recaptcha_v3")
-                        .addParameter("token", token)
-                        .addParameter("csrf_token", account.getCSRFToken()).build());
-                get.addHeader(Header.acceptAll);
-                get.addHeader(HttpHeaders.REFERER, URL.root);
-                get.addHeader(Header.xCsrfToken, account.getCSRFToken());
-                get.addHeader(Header.xreqXML);
-                try (CloseableHttpResponse response = account.httpClient.execute(get, account.httpClientContext)) {
-                    HttpEntity entity = response.getEntity();
-                    if (entity != null) {
-                        Log.Print(Log.t.DBG, account.logDomain() + "ReCaptcha v3 response: " + EntityUtils.toString(entity));
-                    }
+            HttpGet get = new HttpGet(URL.api);
+            get.setURI(new URIBuilder(get.getURI())
+                    .addParameter("op", "record_recaptcha_v3")
+                    .addParameter("token", cr)
+                    .addParameter("csrf_token", account.getCSRFToken()).build());
+            get.addHeader(Header.acceptAll);
+            get.addHeader(HttpHeaders.REFERER, URL.root);
+            get.addHeader(Header.xCsrfToken, account.getCSRFToken());
+            get.addHeader(Header.xreqXML);
+            try (CloseableHttpResponse response = account.httpClient.execute(get, account.httpClientContext)) {
+                HttpEntity entity = response.getEntity();
+                if (entity != null) {
+                    Log.Print(Log.t.DBG, account.logDomain() + "ReCaptcha v3 response: " + EntityUtils.toString(entity));
                 }
-            } catch (RuntimeException | URISyntaxException | IOException e) {
-                throw e;
             }
-        } finally {
-            account.closeHTTPClient();
+        } catch (RuntimeException | URISyntaxException | IOException e) {
+            throw e;
         }
     }
+
 
     public static void RedeemRewards(Account account, Boost boost) throws IOException, URISyntaxException {
         Log.Print(Log.t.DBG, account.logDomain() + "Reedeeming boost: " + boost.name);
