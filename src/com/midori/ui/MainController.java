@@ -147,6 +147,9 @@ public class MainController implements Initializable {
     private TextField _set_anticaptchakey;
 
     @FXML
+    private TextField _set_aiserver;
+
+    @FXML
     private Button _set_updateproxycredentials;
 
     @FXML
@@ -245,8 +248,10 @@ public class MainController implements Initializable {
             _set_proxyusername.setText(DBSetTools.SET_PROXY_USERNAME);
             _set_proxypassword.setText(DBSetTools.SET_PROXY_PASSWORD);
             _set_anticaptchakey.setText(DBSetTools.SET_ANTICAPTCHA_KEY);
+            _set_aiserver.setText(DBSetTools.SET_AI_SERVER);
 
-            Log.Print(Log.t.INF, "midori v0.3.0 beta");
+
+            Log.Print(Log.t.INF, Prefs.VERSION);
 
             Log.Print(Log.t.WRN, "This is a testing version for development & feedback purposes");
 
@@ -419,6 +424,7 @@ public class MainController implements Initializable {
             DBSetTools.SET_PROXY_USERNAME = _set_proxyusername.getText();
             DBSetTools.SET_PROXY_PASSWORD = _set_proxypassword.getText();
             DBSetTools.SET_ANTICAPTCHA_KEY = _set_anticaptchakey.getText();
+            DBSetTools.SET_AI_SERVER = _set_aiserver.getText();
             DBSetTools.SaveSettingsToDB();
             Log.Print(Log.t.SCS, "Settings saved to database");
         } catch (SQLException e) {

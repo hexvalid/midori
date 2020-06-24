@@ -273,6 +273,8 @@
                                                 <PasswordField fx:id="_set_proxypassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="Anti-Captcha Key:" GridPane.rowIndex="2" />
                                                 <TextField fx:id="_set_anticaptchakey" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label text="AI Server:" GridPane.rowIndex="3" />
+                                                <TextField fx:id="_set_aiserver" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                              </children>
                                           </GridPane>
                                        </content>

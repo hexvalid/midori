@@ -1,5 +1,6 @@
 package com.midori.ui;
 
+import com.midori.bot.Prefs;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +23,7 @@ public class Main extends Application {
         Parent root = loader.load();
         root.getStylesheets().add("/com/midori/ui/res/style.css");
         Controller = loader.getController();
-        primaryStage.setTitle("midori");
+        primaryStage.setTitle("midori (" + Prefs.VERSION+")");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.setFullScreen(false);

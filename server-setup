@@ -5,19 +5,19 @@ do
    az network public-ip create -g RG --sku Basic --version IPv4 -n IP-$i --allocation-method Dynamic --idle-timeout 30 --location eastus2
    az network nic ip-config create -g RG  --nic-name vps191 --name ic-$i --private-ip-address 10.0.1.$i --private-ip-address-version IPv4 --public-ip-address IP-$i
    echo "sleeping..."
-   sleep $[ ( $RANDOM % 300 )  + 1 ]s
+   sleep $[ ( $RANDOM % 300 )  + 1 ]
 done
 
 
 
-useradd -M -s /usr/sbin/nologin 5cvfwog1joheejfa
-passwd 5cvfwog1joheejfa
-	> c3bnslwx1wkxtror
+useradd -M -s /usr/sbin/nologin e4cf6e290c0cf8ae8fb91fcf818e1e40
+passwd e4cf6e290c0cf8ae8fb91fcf818e1e40
+	> a565ab1f3802afbf4d07c1674069d813
 
 sudo ufw allow 22
 sudo ufw allow 4200
-sudo ufw allow 31416/tcp
-sudo ufw allow 31416/udp
+sudo ufw allow 32416/tcp
+sudo ufw allow 32416/udp
 sudo ufw enable
 
 
@@ -29,34 +29,34 @@ external.protocol: ipv4
 external.rotation: same-same
 
 # begin tabs
-internal: 10.0.1.1 port = 31416
+internal: 10.0.1.1 port = 32416
 external: 10.0.1.1
 
-internal: 10.0.1.2 port = 31416
+internal: 10.0.1.2 port = 32416
 external: 10.0.1.2
 
-internal: 10.0.1.3 port = 31416
+internal: 10.0.1.3 port = 32416
 external: 10.0.1.3
 
-internal: 10.0.1.4 port = 31416
+internal: 10.0.1.4 port = 32416
 external: 10.0.1.4
 
-internal: 10.0.1.5 port = 31416
+internal: 10.0.1.5 port = 32416
 external: 10.0.1.5
 
-internal: 10.0.1.6 port = 31416
+internal: 10.0.1.6 port = 32416
 external: 10.0.1.6
 
-internal: 10.0.1.7 port = 31416
+internal: 10.0.1.7 port = 32416
 external: 10.0.1.7
 
-internal: 10.0.1.8 port = 31416
+internal: 10.0.1.8 port = 32416
 external: 10.0.1.8
 
-internal: 10.0.1.9 port = 31416
+internal: 10.0.1.9 port = 32416
 external: 10.0.1.9
 
-internal: 10.0.1.10 port = 31416
+internal: 10.0.1.10 port = 32416
 external: 10.0.1.10
 # end tabs
 

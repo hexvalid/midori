@@ -1,6 +1,7 @@
 package com.midori.bot;
 
 import com.midori.database.DBAccTools;
+import com.midori.database.DBSetTools;
 import com.midori.ui.Log;
 import com.sun.istack.internal.Nullable;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -96,7 +97,6 @@ public class Engine {
                 //@parseller:0
                 params.add(new BasicNameValuePair("token", StringUtils.substringBetween(mainBody, "signup_token = '", "'")));
                 Captcha.Response cr = solveBotdetectCaptcha(account, 1);
-                cid = cr.taskId;
                 params.addAll(cr.params);
                 account.signUpDate = new java.sql.Date(System.currentTimeMillis());
             } else {
@@ -484,7 +484,6 @@ public class Engine {
 
     public static AICaptcha.BDCaptcha getBotDetectCaptcha(Account account) throws URISyntaxException {
         AICaptcha.BDCaptcha bdCaptcha = new AICaptcha.BDCaptcha();
-        Log.Print(Log.t.DBG, "Getting BotDetect Captcha...");
         HttpGet get1 = new HttpGet(URL.api);
         get1.setURI(new URIBuilder(get1.getURI())
                 .addParameter("op", "generate_captchasnet")
@@ -523,7 +522,7 @@ public class Engine {
     public static Captcha.Response solveBotdetectCaptcha(Account account, int i) throws IOException, URISyntaxException {
         Captcha.Response cr = new Captcha.Response();
         cr.params = new ArrayList<>();
-        Log.Print(Log.t.DBG, "Thinking BotDetect Captcha (#" + i + ")...");
+        Log.Print(Log.t.DBG, "Selecting Trained BotDetect Captcha (#" + i + ")...");
         AICaptcha.BDCaptcha bdCaptcha;
         while (true) {
             bdCaptcha = getBotDetectCaptcha(account);
@@ -535,19 +534,17 @@ public class Engine {
                 .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
                 .addBinaryBody("image", bdCaptcha.image, ContentType.IMAGE_JPEG, "image.jpg")
                 .build();
-        HttpPost post = new HttpPost("http://52.252.115.15:4200/solve/");
+        HttpPost post = new HttpPost("http://" + DBSetTools.SET_AI_SERVER + "/solve/"); //todo: printf
         post.setEntity(data);
 
 
-        try (CloseableHttpResponse response = account.httpClient.execute(post)) {
+        try (CloseableHttpResponse response = Captcha.Client.execute(post)) {
             HttpEntity entity = response.getEntity();
             bdCaptcha.response = EntityUtils.toString(entity);
         } catch (IOException e) {
             e.printStackTrace(); //todo
         }
 
-
-        System.out.println("answer: " + bdCaptcha.response);
 
         String suffix = "";
         if (i > 1) {

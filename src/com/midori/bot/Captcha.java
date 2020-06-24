@@ -33,7 +33,7 @@ public class Captcha {
     final private static String urlCreateTask = "http://api.anti-captcha.com/createTask";
     final private static String urlGetTaskResult = "http://api.anti-captcha.com/getTaskResult";
 
-    private static CloseableHttpClient client = HttpClients.custom()
+    public static final CloseableHttpClient Client = HttpClients.custom()
             .disableCookieManagement()
             .disableContentCompression()
             .addInterceptorLast((HttpRequestInterceptor) (request, context) -> {
@@ -55,7 +55,7 @@ public class Captcha {
                         .put("minScore", 0.7)
                         .put("pageAction", "all")).toString(), ContentType.APPLICATION_JSON);
         post.setEntity(body);
-        try (CloseableHttpResponse response = client.execute(post)) {
+        try (CloseableHttpResponse response = Client.execute(post)) {
             HttpEntity entity = response.getEntity();
             if (entity != null) {
                 JSONObject result = new JSONObject(EntityUtils.toString(entity));
@@ -93,7 +93,7 @@ public class Captcha {
         Thread.sleep(initialWaitTime);
         Log.Print(Log.t.DBG, "(" + taskId + "): Entering checking captcha task loop...");
         for (int i = 0; i < MAX_CHECK_COUNT; i++) {
-            try (CloseableHttpResponse response = client.execute(post)) {
+            try (CloseableHttpResponse response = Client.execute(post)) {
                 HttpEntity entity = response.getEntity();
                 if (entity != null) {
                     JSONObject result = new JSONObject(EntityUtils.toString(entity));
