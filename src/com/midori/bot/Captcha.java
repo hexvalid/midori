@@ -32,7 +32,6 @@ public class Captcha {
 
     final private static String urlCreateTask = "http://api.anti-captcha.com/createTask";
     final private static String urlGetTaskResult = "http://api.anti-captcha.com/getTaskResult";
-    final private static String urlReportIncorrectImageCaptcha = "http://api.anti-captcha.com/reportIncorrectImageCaptcha";
 
     private static CloseableHttpClient client = HttpClients.custom()
             .disableCookieManagement()
@@ -43,40 +42,6 @@ public class Captcha {
             })
             .disableAutomaticRetries()
             .build();
-
-    public static int sendImageCaptcha(String image) throws IOException {
-        Log.Print(Log.t.DBG, "Creating ImageToTextTask task...");
-        HttpPost post = new HttpPost(urlCreateTask);
-        HttpEntity body = new StringEntity(new JSONObject()
-                .put("clientKey", DBSetTools.SET_ANTICAPTCHA_KEY)
-                .put("task", new JSONObject()
-                        .put("type", "ImageToTextTask")
-                        .put("body", image)
-                        .put("phase", false)
-                        .put("case", true)
-                        .put("numeric", 0)
-                        .put("math", false)
-                        .put("minLength", 6)
-                        .put("maxLength", 6)
-                        .put("comment", "N0 Numer1cs, Only LeTTeRs!")).toString(), ContentType.APPLICATION_JSON);
-        post.setEntity(body);
-        try (CloseableHttpResponse response = client.execute(post)) {
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                JSONObject result = new JSONObject(EntityUtils.toString(entity));
-                if (result.getInt("errorId") == 0) {
-                    int taskId = result.getInt("taskId");
-                    Log.Print(Log.t.DBG, "(" + taskId + "): ImageToTextTask task created");
-                    return taskId;
-                } else {
-                    String error = result.getString("errorCode") + ": " + result.getString("errorDescription");
-                    Log.Print(Log.t.ERR, "ImageToTextTask task can not created: " + error);
-                    throw new RuntimeException(error);
-                }
-            }
-        }
-        return -1;
-    }
 
     public static int sendRecaptchaV3() throws IOException {
         Log.Print(Log.t.DBG, "Creating reCAPTCHA v3 task...");
@@ -162,28 +127,6 @@ public class Captcha {
         return null;
     }
 
-    public static void reportIncorrectImageCaptcha(int taskId) throws IOException {
-    /*    Log.Print(Log.t.DBG, "(" + taskId + "): Captcha reporting...");
-        HttpPost post = new HttpPost(urlReportIncorrectImageCaptcha);
-        HttpEntity body = new StringEntity(new JSONObject()
-                .put("clientKey", DBSetTools.SET_ANTICAPTCHA_KEY)
-                .put("taskId", taskId).toString(), ContentType.APPLICATION_JSON);
-        post.setEntity(body);
-        try (CloseableHttpResponse response = client.execute(post)) {
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                JSONObject result = new JSONObject(EntityUtils.toString(entity));
-                if (result.getInt("errorId") == 0) {
-                    Log.Print(Log.t.SCS, "(" + taskId + "): Captcha reported");
-                } else {
-                    Log.Print(Log.t.ERR, "Captcha can not be reported: " + result.getInt("errorId"));
-                    throw new RuntimeException(String.valueOf(result.getInt("errorId")));
-                }
-            }
-        }*/
-
-
-    }
 }
 
 

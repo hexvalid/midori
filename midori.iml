@@ -7,15 +7,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="org.apache.commons:commons-lang3:3.91" level="project" />
-    <orderEntry type="library" name="org.apache.httpcomponents:httpclient:4.5.101" level="project" />
-    <orderEntry type="library" name="org.json:json:201907221" level="project" />
-    <orderEntry type="library" name="org.jsoup:jsoup:1.12.11" level="project" />
-    <orderEntry type="library" name="org.xerial:sqlite-jdbc:3.28.01" level="project" />
     <orderEntry type="library" name="httpclient" level="project" />
     <orderEntry type="library" name="json" level="project" />
     <orderEntry type="library" name="jsoup" level="project" />
     <orderEntry type="library" name="sqlite-jdbc" level="project" />
     <orderEntry type="library" name="commons-lang3" level="project" />
+    <orderEntry type="library" name="httpmime" level="project" />
   </component>
 </module>

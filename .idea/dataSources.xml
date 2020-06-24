@@ -7,17 +7,5 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/midori.db</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="midori.db [bak]" uuid="a72b5807-ead4-4cbd-9d08-438ce2b2e93f">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/midori.db.bak</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="identifier.sqlite" uuid="03ea2917-9134-495d-91fc-b79146b38b02">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:identifier.sqlite</jdbc-url>
-    </data-source>
   </component>
 </project>

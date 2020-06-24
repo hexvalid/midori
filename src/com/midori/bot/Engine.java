@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
+import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -16,6 +17,11 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -113,7 +119,8 @@ public class Engine {
                         account.setloginCredentials(vals[2]);
                     } else if (body.charAt(0) == 'e') {
                         if (body.contains("Captcha is incorrect")) {
-                            Captcha.reportIncorrectImageCaptcha(cid);
+                            //todo: what is this?
+                            //Captcha.reportIncorrectImageCaptcha(cid);
                             throw new LoginError("Captcha is incorrect");
                         }
                         throw new LoginError(body.substring(body.lastIndexOf(':') + 1));
@@ -457,7 +464,8 @@ public class Engine {
                     } else if (body.charAt(0) == 'e') {
                         if (body.contains("Captcha is incorrect")) {
                             if (cr != null) {
-                                Captcha.reportIncorrectImageCaptcha(cr.taskId);
+                                //todo: what is this?
+                                //Captcha.reportIncorrectImageCaptcha(cr.taskId);
                             }
                             throw new RollError("Captcha is incorrect");
                         } else if (body.contains("Someone has already played")) {
@@ -502,9 +510,7 @@ public class Engine {
         try (CloseableHttpResponse response = account.httpClient.execute(get2, account.httpClientContext)) {
             HttpEntity entity = response.getEntity();
             if (entity != null) {
-
-                ByteArrayInputStream bais = new ByteArrayInputStream(EntityUtils.toByteArray(entity));
-                bdCaptcha.image = ImageIO.read(bais);
+                bdCaptcha.image = EntityUtils.toByteArray(entity);
             }
         } catch (ClientProtocolException e) {
             e.printStackTrace(); //todo
@@ -524,22 +530,24 @@ public class Engine {
             if (AICaptcha.IsTrainedCaptcha(bdCaptcha.image)) {
                 break;
             }
+        }
+        HttpEntity data = MultipartEntityBuilder.create()
+                .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
+                .addBinaryBody("image", bdCaptcha.image, ContentType.IMAGE_JPEG, "image.jpg")
+                .build();
+        HttpPost post = new HttpPost("http://52.252.115.15:4200/solve/");
+        post.setEntity(data);
 
+
+        try (CloseableHttpResponse response = account.httpClient.execute(post)) {
+            HttpEntity entity = response.getEntity();
+            bdCaptcha.response = EntityUtils.toString(entity);
+        } catch (IOException e) {
+            e.printStackTrace(); //todo
         }
 
-        File outputfile = new File("/tmp/detect/" + bdCaptcha.random + ".jpg");
-        ImageIO.write(bdCaptcha.image, "jpg", outputfile);
 
-        String answer = (new BufferedReader(new InputStreamReader((
-                new ProcessBuilder("/usr/bin/python3", "/home/hexvalid/Videos/ai-bdc/interface.py", "/tmp/detect/" + bdCaptcha.random + ".jpg")).start().getInputStream()))).readLine();
-
-
-        bdCaptcha.response = answer;
         System.out.println("answer: " + bdCaptcha.response);
-        ImageIO.write(bdCaptcha.image, "jpg",
-                new File("/tmp/detect/answer-" + bdCaptcha.response + ".jpg"));
-        System.out.println("OK...");
-
 
         String suffix = "";
         if (i > 1) {

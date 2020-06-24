@@ -2,7 +2,6 @@ package com.midori.bot;
 
 public class Simulator {
     public static void main(String[] args) {
-        //44:15 ERROR RATE
 
         int rp_bonus_remain = 0;
         int rp_bonus_point = 0;
@@ -11,9 +10,7 @@ public class Simulator {
 
         boolean last_fp_with_rp = false;
 
-        double cost = 0.00184;
 
-        double totalcost = 0;
 
         int rp = 0, satoshi = 0;
         int x = 0;
@@ -63,13 +60,12 @@ public class Simulator {
                     System.out.println("xxx");
                 } else {
                     last_fp_with_rp = false;
-                    totalcost += cost;
                 }
 
                 //Day #30, Roll: #24. SATOSHI: 28800, RP: 582, Roll count: 719. COST: 1.3248
                 //Day #30, Roll: #24. SATOSHI: 28200, RP: 494, Roll count: 719. COST: 0.94943999999999
 
-                System.out.println("Day #" + i + ", Roll: #" + j + ". SATOSHI: " + satoshi + ", RP: " + rp + ", Roll count: " + x + ". COST: " + totalcost);
+                System.out.println("Day #" + i + ", Roll: #" + j + ". SATOSHI: " + satoshi + ", RP: " + rp + ", Roll count: " + x);
                 x++;
             }
 

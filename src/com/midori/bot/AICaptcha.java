@@ -1,10 +1,13 @@
 package com.midori.bot;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
@@ -13,13 +16,14 @@ public class AICaptcha {
 
 
     static class BDCaptcha {
-        public BufferedImage image;
+        public byte[] image;
         public String random;
         public String response;
     }
 
 
-    public static boolean IsTrainedCaptcha(BufferedImage img) {
+    public static boolean IsTrainedCaptcha(byte[] imgBytes) throws IOException {
+        BufferedImage img = ImageIO.read(new ByteArrayInputStream(imgBytes));
         int whitePixelCount = 0;
         int grayPixelCount = 0;
         int[] rgb;
