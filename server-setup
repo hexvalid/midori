@@ -1,9 +1,9 @@
-az network nic update -g RG -n vps887 --ip-forwarding true
+az network nic update -g RG -n vps191 --ip-forwarding true
 
 for i in {1..5}
 do
    az network public-ip create -g RG --sku Basic --version IPv4 -n IP-$i --allocation-method Dynamic --idle-timeout 30 --location eastus2
-   az network nic ip-config create -g RG  --nic-name vps887 --name ic-$i --private-ip-address 10.0.1.$i --private-ip-address-version IPv4 --public-ip-address IP-$i
+   az network nic ip-config create -g RG  --nic-name vps191 --name ic-$i --private-ip-address 10.0.1.$i --private-ip-address-version IPv4 --public-ip-address IP-$i
    echo "sleeping..."
    sleep $[ ( $RANDOM % 300 )  + 1 ]s
 done
