@@ -246,7 +246,7 @@ public class MainController implements Initializable {
             _set_proxypassword.setText(DBSetTools.SET_PROXY_PASSWORD);
             _set_anticaptchakey.setText(DBSetTools.SET_ANTICAPTCHA_KEY);
 
-            Log.Print(Log.t.INF, "midori v0.2.0 alpha");
+            Log.Print(Log.t.INF, "midori v0.3.0 beta");
 
             Log.Print(Log.t.WRN, "This is a testing version for development & feedback purposes");
 

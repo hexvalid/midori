@@ -23,12 +23,12 @@ import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -385,7 +385,7 @@ public class Engine {
                             Captcha.Response cr1 = solveBotdetectCaptcha(account, 1);
                             cid1.set(cr1.taskId);
                             params.addAll(cr1.params);
-                        } catch (URISyntaxException | IOException | InterruptedException e) {
+                        } catch (IOException | URISyntaxException e) {
                             Log.Print(Log.t.CRI, "Roll thread error: " + e.getMessage());
                         }
                         latch.countDown();
@@ -395,7 +395,7 @@ public class Engine {
                             Captcha.Response cr2 = solveBotdetectCaptcha(account, 2);
                             cid2.set(cr2.taskId);
                             params.addAll(cr2.params);
-                        } catch (URISyntaxException | IOException | InterruptedException e) {
+                        } catch (IOException | URISyntaxException e) {
                             Log.Print(Log.t.CRI, "Roll thread error: " + e.getMessage());
                         }
                         latch.countDown();
@@ -474,12 +474,9 @@ public class Engine {
         }
     }
 
-
-    public static Captcha.Response solveBotdetectCaptcha(Account account, int i) throws URISyntaxException, IOException, InterruptedException {
-        Captcha.Response cr = new Captcha.Response();
-        cr.params = new ArrayList<>();
-        String random = null, image, result;
-        Log.Print(Log.t.DBG, "Generating BotDetect Captcha (#" + i + ")...");
+    public static AICaptcha.BDCaptcha getBotDetectCaptcha(Account account) throws URISyntaxException {
+        AICaptcha.BDCaptcha bdCaptcha = new AICaptcha.BDCaptcha();
+        Log.Print(Log.t.DBG, "Getting BotDetect Captcha...");
         HttpGet get1 = new HttpGet(URL.api);
         get1.setURI(new URIBuilder(get1.getURI())
                 .addParameter("op", "generate_captchasnet")
@@ -492,29 +489,65 @@ public class Engine {
         try (CloseableHttpResponse response = account.httpClient.execute(get1, account.httpClientContext)) {
             HttpEntity entity = response.getEntity();
             if (entity != null) {
-                random = EntityUtils.toString(entity);
+                bdCaptcha.random = EntityUtils.toString(entity);
             }
+        } catch (IOException e) {
+            e.printStackTrace(); //todo
         }
 
-        Log.Print(Log.t.DBG, "Getting BotDetect Captcha (#" + i + ")...");
         HttpGet get2 = new HttpGet(URL.botdetect);
-        get2.setURI(new URIBuilder(get2.getURI()).addParameter("random", random).build());
+        get2.setURI(new URIBuilder(get2.getURI()).addParameter("random", bdCaptcha.random).build());
         get2.addHeader(Header.acceptImage);
         get2.addHeader(HttpHeaders.REFERER, URL.root);
         try (CloseableHttpResponse response = account.httpClient.execute(get2, account.httpClientContext)) {
             HttpEntity entity = response.getEntity();
             if (entity != null) {
-                image = new String(Base64.getEncoder().encode(EntityUtils.toByteArray(entity)));
-                cr.taskId = Captcha.sendImageCaptcha(image);
-                result = Captcha.checkCaptcha(cr.taskId, false);
-                String suffix = "";
-                if (i > 1) {
-                    suffix = String.valueOf(i);
-                }
-                cr.params.add(new BasicNameValuePair("botdetect_random" + suffix, random));
-                cr.params.add(new BasicNameValuePair("botdetect_response" + suffix, result));
+
+                ByteArrayInputStream bais = new ByteArrayInputStream(EntityUtils.toByteArray(entity));
+                bdCaptcha.image = ImageIO.read(bais);
             }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace(); //todo
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return bdCaptcha;
+    }
+
+    public static Captcha.Response solveBotdetectCaptcha(Account account, int i) throws IOException, URISyntaxException {
+        Captcha.Response cr = new Captcha.Response();
+        cr.params = new ArrayList<>();
+        Log.Print(Log.t.DBG, "Thinking BotDetect Captcha (#" + i + ")...");
+        AICaptcha.BDCaptcha bdCaptcha;
+        while (true) {
+            bdCaptcha = getBotDetectCaptcha(account);
+            if (AICaptcha.IsTrainedCaptcha(bdCaptcha.image)) {
+                break;
+            }
+
+        }
+
+        File outputfile = new File("/tmp/detect/" + bdCaptcha.random + ".jpg");
+        ImageIO.write(bdCaptcha.image, "jpg", outputfile);
+
+        String answer = (new BufferedReader(new InputStreamReader((
+                new ProcessBuilder("/usr/bin/python3", "/home/hexvalid/Videos/ai-bdc/interface.py", "/tmp/detect/" + bdCaptcha.random + ".jpg")).start().getInputStream()))).readLine();
+
+
+        bdCaptcha.response = answer;
+        System.out.println("answer: " + bdCaptcha.response);
+        ImageIO.write(bdCaptcha.image, "jpg",
+                new File("/tmp/detect/answer-" + bdCaptcha.response + ".jpg"));
+        System.out.println("OK...");
+
+
+        String suffix = "";
+        if (i > 1) {
+            suffix = String.valueOf(i);
+        }
+        cr.params.add(new BasicNameValuePair("botdetect_random" + suffix, bdCaptcha.random));
+        cr.params.add(new BasicNameValuePair("botdetect_response" + suffix, bdCaptcha.response));
+
         return cr;
     }
 

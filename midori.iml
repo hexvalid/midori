@@ -12,5 +12,10 @@
     <orderEntry type="library" name="org.json:json:201907221" level="project" />
     <orderEntry type="library" name="org.jsoup:jsoup:1.12.11" level="project" />
     <orderEntry type="library" name="org.xerial:sqlite-jdbc:3.28.01" level="project" />
+    <orderEntry type="library" name="httpclient" level="project" />
+    <orderEntry type="library" name="json" level="project" />
+    <orderEntry type="library" name="jsoup" level="project" />
+    <orderEntry type="library" name="sqlite-jdbc" level="project" />
+    <orderEntry type="library" name="commons-lang3" level="project" />
   </component>
 </module>
