@@ -16,7 +16,8 @@ import java.util.concurrent.Executors;
 public class Test {
     public static void main(String[] args) throws InterruptedException, IOException, Engine.LoginError, URISyntaxException, SQLException, GeneralSecurityException {
 
-        System.out.println(OTP.generatePIN("MJ7NSD6KEFS6BC6X"));
+        System.out.println(OTP.generatePIN("3YYUAE6ZZ4SYG325"));
+        System.exit(1);
         System.out.println(RandomStringUtils.random(32, Rune.baseBytes));
         System.out.println(RandomUtils.nextLong(1111111111L, 9999999999L));
         System.exit(1);
@@ -33,7 +34,7 @@ public class Test {
 
         DBCon.Connect();
         DBAccTools.GetAllAccounts();
-        Account account = new Account("erkanmdr@gmail.com", "aey38BId2uOyMVWd", 0, false, "", -180,
+        Account account = new Account("erkanmdr@gmail.com", "4EbSEyoWqJGyAjAp", 0, false, "", -180,
                 "Mozilla/5.0 (X11; Linux x86_64; rv:71.0) Gecko/20100101 Firefox/71.0", "en-US,en;q=0.5", "off");
 
         Engine.Login(account, false);

@@ -52,7 +52,7 @@ public class Captcha {
                         .put("type", "RecaptchaV3TaskProxyless")
                         .put("websiteURL", "https://freebitco.in/")
                         .put("websiteKey", "6Lc1kXIUAAAAAPP7OeuycKWZ-t4br4Rh3XvqWUGd")
-                        .put("minScore", 0.7)
+                        .put("minScore", 0.9)
                         .put("pageAction", "all")).toString(), ContentType.APPLICATION_JSON);
         post.setEntity(body);
         try (CloseableHttpResponse response = Client.execute(post)) {

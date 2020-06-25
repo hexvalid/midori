@@ -2,8 +2,10 @@ package com.midori.ui;
 
 
 import com.midori.bot.Account;
+import com.midori.bot.Utils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -36,9 +38,25 @@ public class Tools {
     static boolean CheckProxy(String address) {
         //todo: need timeout
         Log.Print(Log.t.INF, "Checking proxy...");
-        if (StringUtils.countMatches(address, '.') == 3 && StringUtils.countMatches(address, ':') == 1) {
+        if (Utils.CheckProxyTypo(address)) {
             HttpClientContext httpClientContext = HttpClientContext.create();
             HttpClientBuilder builder = HttpClients.custom();
+
+            if (address.startsWith("socks5://")) {
+                builder.setConnectionManager(new PoolingHttpClientConnectionManager(
+                        RegistryBuilder.<ConnectionSocketFactory>create()
+                                .register("http", PlainConnectionSocketFactory.INSTANCE)
+                                .register("https", new Account.socksSocket(SSLContexts.createSystemDefault()))
+                                .build()));
+                String[] parts = StringUtils.split(address.split("://")[1], ':');
+                httpClientContext.setAttribute("socks.address",
+                        new InetSocketAddress(parts[0], Integer.parseInt(parts[1])));
+            } else if (address.startsWith("http://")) {
+                String[] parts = StringUtils.split(address.split("://")[1], ':');
+                builder.setProxy(new HttpHost(parts[0], Integer.parseInt(parts[1]), "http"));
+            }
+
+
             builder.setConnectionManager(new PoolingHttpClientConnectionManager(
                     RegistryBuilder.<ConnectionSocketFactory>create()
                             .register("http", PlainConnectionSocketFactory.INSTANCE)
@@ -49,9 +67,7 @@ public class Tools {
                     .setConnectionRequestTimeout(10 * 1000)
                     .setSocketTimeout(10 * 1000).build());
             builder.disableAutomaticRetries();
-            String[] parts = StringUtils.split(address, ':');
-            httpClientContext.setAttribute("socks.address",
-                    new InetSocketAddress(parts[0], Integer.parseInt(parts[1])));
+
             CloseableHttpClient httpClient = builder.build();
             HttpGet get = new HttpGet("https://httpbin.org/ip");
             long startTime = System.currentTimeMillis();

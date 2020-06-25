@@ -415,7 +415,8 @@ public class Engine {
                 Log.Print(Log.t.UNK, account.logDomain() + "Unknown solving type! " + account.captchaType);
                 account.set_Status("Unknown solving type!");
                 if (account.emailConfirmed) {
-                    Thread.sleep(10000 * 60 * 1000);
+                    Log.Print(Log.t.UNK, account.logDomain() + "Waiting 10 minutes...");
+                    Thread.sleep(10 * 60 * 1000);
                 } else {
                     throw new RollError(String.valueOf(account.captchaType));
                 }
@@ -482,7 +483,9 @@ public class Engine {
         }
     }
 
-    public static AICaptcha.BDCaptcha getBotDetectCaptcha(Account account) throws URISyntaxException {
+    public static AICaptcha.BDCaptcha getBotDetectCaptcha(Account account) throws URISyntaxException, IOException {
+        System.out.println("Getting... ");
+
         AICaptcha.BDCaptcha bdCaptcha = new AICaptcha.BDCaptcha();
         HttpGet get1 = new HttpGet(URL.api);
         get1.setURI(new URIBuilder(get1.getURI())
@@ -498,9 +501,10 @@ public class Engine {
             if (entity != null) {
                 bdCaptcha.random = EntityUtils.toString(entity);
             }
-        } catch (IOException e) {
-            e.printStackTrace(); //todo
+        } catch (Exception e) {
+            throw e;
         }
+        System.out.println("Checking... ");
 
         HttpGet get2 = new HttpGet(URL.botdetect);
         get2.setURI(new URIBuilder(get2.getURI()).addParameter("random", bdCaptcha.random).build());
@@ -511,10 +515,8 @@ public class Engine {
             if (entity != null) {
                 bdCaptcha.image = EntityUtils.toByteArray(entity);
             }
-        } catch (ClientProtocolException e) {
-            e.printStackTrace(); //todo
         } catch (IOException e) {
-            e.printStackTrace();
+            throw e;
         }
         return bdCaptcha;
     }
@@ -525,9 +527,14 @@ public class Engine {
         Log.Print(Log.t.DBG, "Selecting Trained BotDetect Captcha (#" + i + ")...");
         AICaptcha.BDCaptcha bdCaptcha;
         while (true) {
-            bdCaptcha = getBotDetectCaptcha(account);
-            if (AICaptcha.IsTrainedCaptcha(bdCaptcha.image)) {
-                break;
+            try {
+                bdCaptcha = getBotDetectCaptcha(account);
+                if (AICaptcha.IsTrainedCaptcha(bdCaptcha.image)) {
+                    break;
+                }
+            } catch (Exception e) {
+                //ignore pls
+                e.printStackTrace();
             }
         }
         HttpEntity data = MultipartEntityBuilder.create()

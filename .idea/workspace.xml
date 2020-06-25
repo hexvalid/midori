@@ -7,6 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="update">
+      <change afterPath="$PROJECT_DIR$/src/com/midori/bot/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f0404a71-e1c6-4bf9-b794-2dba16956afa.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f0404a71-e1c6-4bf9-b794-2dba16956afa.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/commons_lang3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/commons_lang3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/httpclient.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/httpclient.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/httpmime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/httpmime.xml" afterDir="false" />
@@ -15,13 +17,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server-setup" beforeDir="false" afterPath="$PROJECT_DIR$/server-setup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/bot/AICaptcha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/AICaptcha.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Captcha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Captcha.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Prefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Prefs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/database/DBSetTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/database/DBSetTools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/bot/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/bot/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/midori/ui/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/midori/ui/Tools.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,6 +311,10 @@
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
     <state x="1037" y="581" width="475" height="312" key="#Configure_Path_Variables/0.27.2560.1413@0.27.2560.1413" timestamp="1593025395285" />
+    <state x="555" y="215" width="800" height="673" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593066173331">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="555" y="215" width="800" height="673" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.28.1920.1052@0.28.1920.1052" timestamp="1593066173331" />
     <state x="768" y="259" width="374" height="585" key="#com.intellij.ide.util.MemberChooser" timestamp="1592985505033">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
@@ -317,26 +323,26 @@
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state x="410" y="77" width="1089" height="950" key="CommitChangelistDialog2/0.28.1920.1052@0.28.1920.1052" timestamp="1593008759047" />
-    <state width="2514" height="394" key="GridCell.Tab.0.bottom" timestamp="1593026149423">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1870" height="302" key="GridCell.Tab.0.bottom" timestamp="1593081903640">
+      <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state width="2514" height="394" key="GridCell.Tab.0.bottom/0.27.2560.1413@0.27.2560.1413" timestamp="1593026149423" />
-    <state width="1870" height="277" key="GridCell.Tab.0.bottom/0.28.1920.1052@0.28.1920.1052" timestamp="1593006520319" />
-    <state width="2514" height="394" key="GridCell.Tab.0.center" timestamp="1593026149423">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1870" height="302" key="GridCell.Tab.0.bottom/0.28.1920.1052@0.28.1920.1052" timestamp="1593081903640" />
+    <state width="1870" height="302" key="GridCell.Tab.0.center" timestamp="1593081903639">
+      <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state width="2514" height="394" key="GridCell.Tab.0.center/0.27.2560.1413@0.27.2560.1413" timestamp="1593026149423" />
-    <state width="1870" height="277" key="GridCell.Tab.0.center/0.28.1920.1052@0.28.1920.1052" timestamp="1593006520319" />
-    <state width="2514" height="394" key="GridCell.Tab.0.left" timestamp="1593026149423">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1870" height="302" key="GridCell.Tab.0.center/0.28.1920.1052@0.28.1920.1052" timestamp="1593081903639" />
+    <state width="1870" height="302" key="GridCell.Tab.0.left" timestamp="1593081903639">
+      <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state width="2514" height="394" key="GridCell.Tab.0.left/0.27.2560.1413@0.27.2560.1413" timestamp="1593026149423" />
-    <state width="1870" height="277" key="GridCell.Tab.0.left/0.28.1920.1052@0.28.1920.1052" timestamp="1593006520318" />
-    <state width="2514" height="394" key="GridCell.Tab.0.right" timestamp="1593026149423">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state width="1870" height="302" key="GridCell.Tab.0.left/0.28.1920.1052@0.28.1920.1052" timestamp="1593081903639" />
+    <state width="1870" height="302" key="GridCell.Tab.0.right" timestamp="1593081903639">
+      <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state width="2514" height="394" key="GridCell.Tab.0.right/0.27.2560.1413@0.27.2560.1413" timestamp="1593026149423" />
-    <state width="1870" height="277" key="GridCell.Tab.0.right/0.28.1920.1052@0.28.1920.1052" timestamp="1593006520319" />
+    <state width="1870" height="302" key="GridCell.Tab.0.right/0.28.1920.1052@0.28.1920.1052" timestamp="1593081903639" />
     <state width="1870" height="277" key="GridCell.Tab.1.bottom" timestamp="1592988451287">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
@@ -369,14 +375,18 @@
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state x="434" y="133" width="1042" height="837" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.28.1920.1052@0.28.1920.1052" timestamp="1592995915217" />
-    <state x="736" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593007961797">
+    <state x="736" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593078019194">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state x="736" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.28.1920.1052@0.28.1920.1052" timestamp="1593007961797" />
-    <state x="564" y="180" width="1315" height="994" key="find.popup" timestamp="1593025790809">
-      <screen x="0" y="27" width="2560" height="1413" />
+    <state x="736" y="467" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.28.1920.1052@0.28.1920.1052" timestamp="1593078019194" />
+    <state x="423" y="142" width="986" height="740" key="find.popup" timestamp="1593081888809">
+      <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state x="564" y="180" width="1315" height="994" key="find.popup/0.27.2560.1413@0.27.2560.1413" timestamp="1593025790809" />
-    <state x="423" y="142" width="986" height="740" key="find.popup/0.28.1920.1052@0.28.1920.1052" timestamp="1593002318163" />
+    <state x="423" y="142" width="986" height="740" key="find.popup/0.28.1920.1052@0.28.1920.1052" timestamp="1593081888809" />
+    <state x="624" y="255" key="run.anything.popup" timestamp="1593075656218">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="624" y="255" key="run.anything.popup/0.28.1920.1052@0.28.1920.1052" timestamp="1593075656218" />
   </component>
 </project>

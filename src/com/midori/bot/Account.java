@@ -11,6 +11,7 @@ import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.config.RegistryBuilder;
+import org.apache.http.config.SocketConfig;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -134,10 +135,13 @@ public class Account {
                         new BasicHeader(HttpHeaders.ACCEPT_LANGUAGE, headerAcceptLanguage)))
                 .disableAutomaticRetries()
                 .disableConnectionState()
+                .setDefaultSocketConfig(SocketConfig.custom()
+                        .setSoTimeout(15 * 1000).build())
                 .setDefaultRequestConfig(RequestConfig.custom()
-                        .setConnectTimeout(30 * 1000)
-                        .setConnectionRequestTimeout(30 * 1000)
-                        .setSocketTimeout(32 * 1000).build());
+                        .setConnectTimeout(15 * 1000)
+                        .setConnectionRequestTimeout(15 * 1000)
+                        .setSocketTimeout(15 * 1000).build());
+
         if (this.proxy.get().equals("DEBUG")) {
             builder.setProxy(new HttpHost("127.0.0.1", 8080, "http")); //should be final variable
             try {
@@ -145,17 +149,21 @@ public class Account {
             } catch (Exception ignored) {
                 //ignored error for debug
             }
-        } else if (StringUtils.countMatches(this.proxy.get(), '.') == 3 &&
-                StringUtils.countMatches(this.proxy.get(), ':') == 1) {
-            //its mean valid socks address
-            builder.setConnectionManager(new PoolingHttpClientConnectionManager(
-                    RegistryBuilder.<ConnectionSocketFactory>create()
-                            .register("http", PlainConnectionSocketFactory.INSTANCE)
-                            .register("https", new socksSocket(SSLContexts.createSystemDefault()))
-                            .build()));
-            String[] parts = StringUtils.split(this.proxy.get(), ':');
-            httpClientContext.setAttribute("socks.address",
-                    new InetSocketAddress(parts[0], Integer.parseInt(parts[1])));
+        } else if (Utils.CheckProxyTypo(this.proxy.get())) {
+
+            if (this.proxy.get().startsWith("socks5://")) {
+                builder.setConnectionManager(new PoolingHttpClientConnectionManager(
+                        RegistryBuilder.<ConnectionSocketFactory>create()
+                                .register("http", PlainConnectionSocketFactory.INSTANCE)
+                                .register("https", new socksSocket(SSLContexts.createSystemDefault()))
+                                .build()));
+                String[] parts = StringUtils.split(this.proxy.get().split("://")[1], ':');
+                httpClientContext.setAttribute("socks.address",
+                        new InetSocketAddress(parts[0], Integer.parseInt(parts[1])));
+            } else if (this.proxy.get().startsWith("http://")) {
+                String[] parts = StringUtils.split(this.proxy.get().split("://")[1], ':');
+                builder.setProxy(new HttpHost(parts[0], Integer.parseInt(parts[1]), "http"));
+            }
         }
         this.httpClient = builder.build();
     }

@@ -22,7 +22,12 @@ public class AICaptcha {
     }
 
 
-    public static boolean IsTrainedCaptcha(byte[] imgBytes) throws IOException {
+    public static boolean IsTrainedCaptcha(byte[] imgBytes) throws IOException, NullPointerException {
+
+        System.out.println("Checking... ");
+        if (imgBytes.length < 600) {
+            return false;
+        }
         BufferedImage img = ImageIO.read(new ByteArrayInputStream(imgBytes));
         int whitePixelCount = 0;
         int grayPixelCount = 0;
@@ -39,7 +44,7 @@ public class AICaptcha {
                 }
             }
         }
-        if ((whitePixelCount > 6300 && whitePixelCount < 13762) &&
+        if ((whitePixelCount > 6400 && whitePixelCount < 13762) &&
                 (grayPixelCount > 2055 && grayPixelCount < 3859)) {
             return true;
         } else {
