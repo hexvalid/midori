@@ -249,7 +249,11 @@ public class Account {
     }
 
     public void setBoosts(String boosts) {
-        this.boosts.set(boosts);
+        if (boosts != null && boosts.length() > 3) {
+            this.boosts.set(boosts);
+        } else {
+            this.boosts.set("");
+        }
     }
 
     public void setProxy(String proxy) {
@@ -264,6 +268,14 @@ public class Account {
         this._status.set(_status);
     }
 
+    public int getRewardPoints() {
+        return this.rewardPoints.get();
+    }
+
+
+    public String getBoosts() {
+        return this.boosts.get();
+    }
 
     private String getCookie(String name) {
         for (Cookie cookie : this.cookieStore.getCookies()) {

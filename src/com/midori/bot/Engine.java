@@ -202,6 +202,12 @@ public class Engine {
                     //@parseller:13
                     account.tfaEnabled = !body.contains("<div style=\"display:none;\"> <p style=\"text-transform: none;\">Please enter the code generated");
 
+                    //@parseller:14
+                    if (body.contains("bonus_container_free_points")) {
+                        account.setBoosts(doc.selectFirst("#bonus_container_free_points .free_play_bonus_box_span_large").text());
+                    } else {
+                        account.setBoosts("");
+                    }
                 }
             }
 
@@ -366,6 +372,27 @@ public class Engine {
     }
 
     public static void Roll(Account account) throws IOException, RollError, InterruptedException {
+        // -- AUTO-RP SUBSYSTEM --
+        try {
+
+            if (!account.getBoosts().contains("extra reward points")) {
+                if (account.getRewardPoints() >= 12 && account.getRewardPoints() < 72) {
+                    Engine.RedeemRewards(account, Boost.RP1);
+                } else if (account.getRewardPoints() >= 120 && account.getRewardPoints() < 228) {
+                    Engine.RedeemRewards(account, Boost.RP10);
+                } else if (account.getRewardPoints() >= 300 && account.getRewardPoints() < 528) {
+                    Engine.RedeemRewards(account, Boost.RP25);
+                } else if (account.getRewardPoints() >= 600 && account.getRewardPoints() < 1128) {
+                    Engine.RedeemRewards(account, Boost.RP50);
+                } else if (account.getRewardPoints() >= 1200) {
+                    Engine.RedeemRewards(account, Boost.RP100);
+                }
+            }
+        } catch (Exception e) {
+            Log.Print(Log.t.ERR, account.logDomain() + "Boost cannot be activated.");
+            e.printStackTrace();
+        }
+
         if (!account.emailConfirmed) {
             Log.Print(Log.t.WRN, account.logDomain() + "This account have not a email confirmation. " +
                     "This roll may cause break anything!'");
@@ -415,8 +442,8 @@ public class Engine {
                 Log.Print(Log.t.UNK, account.logDomain() + "Unknown solving type! " + account.captchaType);
                 account.set_Status("Unknown solving type!");
                 if (account.emailConfirmed) {
-                    Log.Print(Log.t.UNK, account.logDomain() + "Waiting 10 minutes...");
-                    Thread.sleep(10 * 60 * 1000);
+                    Log.Print(Log.t.UNK, account.logDomain() + "Waiting 30 seconds...");
+                    Thread.sleep(30 * 1000);
                 } else {
                     throw new RollError(String.valueOf(account.captchaType));
                 }

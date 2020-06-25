@@ -23,7 +23,7 @@ public class Main extends Application {
         Parent root = loader.load();
         root.getStylesheets().add("/com/midori/ui/res/style.css");
         Controller = loader.getController();
-        primaryStage.setTitle("midori (" + Prefs.VERSION+")");
+        primaryStage.setTitle("midori (" + Prefs.VERSION+") - [AUTO-BOOST ACTIVATED]");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.setFullScreen(false);

@@ -3,14 +3,15 @@
     <output-path>$PROJECT_DIR$/out/artifacts/midori_jar</output-path>
     <root id="archive" name="midori.jar">
       <element id="module-output" name="midori" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20190722/json-20190722.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.9/commons-lang3-3.9.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.10/httpclient-4.5.10.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.12/httpcore-4.4.12.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.11/commons-codec-1.11.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/xerial/sqlite-jdbc/3.28.0/sqlite-jdbc-3.28.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.12.1/jsoup-1.12.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/home/hexvalid/.m2/repository/org/apache/commons/commons-lang3/3.10/commons-lang3-3.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/home/hexvalid/.m2/repository/commons-codec/commons-codec/1.11/httpclient-4.5.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/home/hexvalid/.m2/repository/commons-codec/commons-codec/1.11/httpcore-4.4.13.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/home/hexvalid/.m2/repository/commons-codec/commons-codec/1.11/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/home/hexvalid/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/home/hexvalid/.m2/repository/commons-codec/commons-codec/1.11/httpmime-4.5.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/home/hexvalid/.m2/repository/org/json/json/20200518/json-20200518.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/home/hexvalid/.m2/repository/org/jsoup/jsoup/1.12.2/jsoup-1.12.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/home/hexvalid/.m2/repository/org/xerial/sqlite-jdbc/3.30.1/sqlite-jdbc-3.30.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
