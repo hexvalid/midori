@@ -645,16 +645,9 @@ public class MainController implements Initializable {
         Log.Print(Log.t.DBG, "Stop all end.");
     }
 
-    public void _acmRedeem() throws IOException, URISyntaxException {
+    public void _acmRedeem() throws IOException, URISyntaxException, Engine.BoostError {
         Log.Print(Log.t.DBG, "Redeeming...");
         Engine.RedeemRewards(_atc.getSelectionModel().getSelectedItem(), _acm_boosts.getSelectionModel().getSelectedItem());
     }
 
-    public void _dLock() {
-        Engine.LOCK.lock();
-    }
-
-    public void _dUnlock() {
-        Engine.LOCK.unlock();
-    }
 }

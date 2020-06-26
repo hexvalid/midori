@@ -42,7 +42,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Engine {
 
@@ -67,10 +66,7 @@ public class Engine {
     }
 
 
-    public static ReentrantLock LOCK = new ReentrantLock();
-
-
-    public static void Login(Account account, boolean signup) throws IOException, LoginError, URISyntaxException, InterruptedException {
+    public static void Login(Account account, boolean signup) throws IOException, LoginError, URISyntaxException {
         Log.Print(Log.t.DBG, account.logDomain() + "Loading initial page for login...");
         try {
             int cid = 0;
@@ -388,9 +384,20 @@ public class Engine {
                     Engine.RedeemRewards(account, Boost.RP100);
                 }
             }
-        } catch (Exception e) {
-            Log.Print(Log.t.ERR, account.logDomain() + "Boost cannot be activated.");
+        } catch (BoostError e) {
+            if (e.getMessage().contains("smaller one")) {
+                Log.Print(Log.t.WRN, account.logDomain() + "Picking smaller one...");
+                try {
+                    Engine.RedeemRewards(account, Boost.RP10);
+                } catch (URISyntaxException uriSyntaxException) {
+                    uriSyntaxException.printStackTrace();
+                } catch (BoostError boostError) {
+                    boostError.printStackTrace();
+                }
+            }
             e.printStackTrace();
+        } catch (URISyntaxException e) {
+            Log.Print(Log.t.ERR, account.logDomain() + "Boost cannot be activated.");
         }
 
         if (!account.emailConfirmed) {
@@ -746,7 +753,7 @@ public class Engine {
     }
 
 
-    public static void RedeemRewards(Account account, Boost boost) throws IOException, URISyntaxException {
+    public static void RedeemRewards(Account account, Boost boost) throws IOException, URISyntaxException, BoostError {
         Log.Print(Log.t.DBG, account.logDomain() + "Reedeeming boost: " + boost.name);
         try {
             account.openHTTPClient();
@@ -764,11 +771,15 @@ public class Engine {
                 try (CloseableHttpResponse response = account.httpClient.execute(get, account.httpClientContext)) {
                     HttpEntity entity = response.getEntity();
                     if (entity != null) {
-                        Log.Print(Log.t.INF, account.logDomain() + "BOOST RESPONSE: " + EntityUtils.toString(entity));
+                        String resp = EntityUtils.toString(entity);
+                        Log.Print(Log.t.INF, account.logDomain() + "BOOST RESPONSE: " + resp);
+                        if (resp.contains("e:")) {
+                            throw new BoostError(resp);
+                        }
                         //TODO: ERR CHECK
                     }
                 }
-            } catch (RuntimeException | URISyntaxException | IOException e) {
+            } catch (RuntimeException | URISyntaxException | IOException | BoostError e) {
                 throw e;
             }
         } finally {
@@ -810,6 +821,13 @@ public class Engine {
 
     public static class RollError extends Exception {
         RollError(String errorMessage) {
+            super(errorMessage);
+        }
+    }
+
+
+    public static class BoostError extends Exception {
+        BoostError(String errorMessage) {
             super(errorMessage);
         }
     }

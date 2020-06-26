@@ -239,8 +239,6 @@
                                     <Button layoutX="642.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dShuffle" text="shuffle" />
                                     <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dStartAll" text="start all" />
                                     <Button layoutX="93.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dStopAll" text="stop all" />
-                                    <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#_dLock" text="LOCK" />
-                                    <Button layoutX="82.0" layoutY="14.0" mnemonicParsing="false" onAction="#_dUnlock" text="UNLOCK" />
                                  </children>
                               </AnchorPane>
                           </content>
