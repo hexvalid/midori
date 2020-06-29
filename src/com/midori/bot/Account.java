@@ -272,6 +272,9 @@ public class Account {
         return this.rewardPoints.get();
     }
 
+    public double getBalance() {
+        return this.balance.get();
+    }
 
     public String getBoosts() {
         return this.boosts.get();

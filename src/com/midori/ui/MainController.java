@@ -20,10 +20,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -172,6 +169,15 @@ public class MainController implements Initializable {
 
     @FXML
     private Button _acm_v3;
+
+    @FXML
+    private Button _acm_playmartingale;
+
+    @FXML
+    private TextField _acm_targetprofit;
+
+    @FXML
+    private ProgressBar _acm_martingalebar;
 
     //Other vars
     static List<Account> accounts;
@@ -648,6 +654,66 @@ public class MainController implements Initializable {
     public void _acmRedeem() throws IOException, URISyntaxException, Engine.BoostError {
         Log.Print(Log.t.DBG, "Redeeming...");
         Engine.RedeemRewards(_atc.getSelectionModel().getSelectedItem(), _acm_boosts.getSelectionModel().getSelectedItem());
+    }
+
+
+    @FXML
+    void _playMartingale() {
+        Account a = _atc.getSelectionModel().getSelectedItem();
+        new Thread(() -> {
+            try {
+                a.openHTTPClient();
+                Platform.runLater(() -> _acm_playmartingale.setDisable(true));
+
+
+                double startBalance = a.getBalance();
+
+                double profit = Double.parseDouble(_acm_targetprofit.getText());
+                double targetAmount = 0.00000001;
+
+                double amount = targetAmount;
+
+                boolean lastStat = true;
+                while (true) {
+
+                    if (a.getBalance() >= startBalance + profit) {
+                        Log.Print(Log.t.INF, a.logDomain() + "Betting: WIN END");
+                        break;
+                    }
+
+                    if (amount > a.getBalance()) {
+                        Log.Print(Log.t.INF, a.logDomain() + "Betting: LOST END");
+                        break;
+                    }
+                    lastStat = Engine.Bet(_atc.getSelectionModel().getSelectedItem(), amount);
+
+                    if (!lastStat) {
+                        amount = amount * 2;
+                    } else {
+                        amount = targetAmount;
+                    }
+                    _acm_martingalebar.setProgress(a.getBalance() / (startBalance + profit));
+
+                    Thread.sleep(new Random().nextInt(2222));
+
+                }
+            } catch (IOException | URISyntaxException | Engine.BetError | InterruptedException e) {
+                Log.Print(Log.t.ERR, e.getMessage());
+                e.printStackTrace();
+            } finally {
+                Platform.runLater(() -> _acm_playmartingale.setDisable(false));
+                try {
+                    _atc.getSelectionModel().getSelectedItem().closeHTTPClient();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    DBAccTools.UpdateAccountForRoll(a);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 }

@@ -12,13 +12,16 @@ public class Boost {
     final public static Boost RP10 = new Boost("free_points_10", Type.RP, 120, "10 REWARD POINTS / ROLL");
     final public static Boost RP1 = new Boost("free_points_1", Type.RP, 12, "1 REWARD POINT / ROLL");
 
+    final public static Boost FP1000 = new Boost("fp_bonus_1000", Type.FP, 3200, "1000% BONUS");
+    final public static Boost FP500 = new Boost("fp_bonus_500", Type.FP, 1600, "500% BONUS");
+    final public static Boost FP100 = new Boost("fp_bonus_100", Type.FP, 320, "100% BONUS");
+    final public static Boost FP50 = new Boost("fp_bonus_50", Type.FP, 160, "50% BONUS");
+    final public static Boost FP10 = new Boost("fp_bonus_10", Type.FP, 32, "10% BONUS");
+
+
     public static List<Boost> BOOSTS = new ArrayList<Boost>(
             Arrays.asList(
-                    new Boost("fp_bonus_1000", Type.FP, 3200, "1000% BONUS"),
-                    new Boost("fp_bonus_500", Type.FP, 1600, "500% BONUS"),
-                    new Boost("fp_bonus_100", Type.FP, 320, "100% BONUS"),
-                    new Boost("fp_bonus_50", Type.FP, 160, "50% BONUS"),
-                    new Boost("fp_bonus_10", Type.FP, 32, "10% BONUS"),
+                    FP1000, FP500, FP100, FP50, FP10,
                     RP100, RP50, RP25, RP10, RP1
             ));
 

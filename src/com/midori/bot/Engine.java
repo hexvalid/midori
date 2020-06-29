@@ -35,12 +35,15 @@ import java.io.*;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Engine {
@@ -199,11 +202,20 @@ public class Engine {
                     account.tfaEnabled = !body.contains("<div style=\"display:none;\"> <p style=\"text-transform: none;\">Please enter the code generated");
 
                     //@parseller:14
+                    String boost1, boost2;
                     if (body.contains("bonus_container_free_points")) {
-                        account.setBoosts(doc.selectFirst("#bonus_container_free_points .free_play_bonus_box_span_large").text());
+                        boost1 = doc.selectFirst("#bonus_container_free_points .free_play_bonus_box_span_large").text();
                     } else {
-                        account.setBoosts("");
+                        boost1 = "";
                     }
+
+                    if (body.contains("bonus_container_fp_bonus")) {
+                        boost2 = doc.selectFirst("#bonus_container_fp_bonus .free_play_bonus_box_span_large").text();
+                    } else {
+                        boost2 = "";
+                    }
+                    account.setBoosts(boost1 + " " + boost2);
+
                 }
             }
 
@@ -374,27 +386,17 @@ public class Engine {
             if (!account.getBoosts().contains("extra reward points")) {
                 if (account.getRewardPoints() >= 12 && account.getRewardPoints() < 72) {
                     Engine.RedeemRewards(account, Boost.RP1);
-                } else if (account.getRewardPoints() >= 120 && account.getRewardPoints() < 228) {
+                } else if (account.getRewardPoints() >= 120) {
                     Engine.RedeemRewards(account, Boost.RP10);
-                } else if (account.getRewardPoints() >= 300 && account.getRewardPoints() < 528) {
-                    Engine.RedeemRewards(account, Boost.RP25);
-                } else if (account.getRewardPoints() >= 600 && account.getRewardPoints() < 1128) {
-                    Engine.RedeemRewards(account, Boost.RP50);
-                } else if (account.getRewardPoints() >= 1200) {
-                    Engine.RedeemRewards(account, Boost.RP100);
                 }
+            }
+
+            if (account.getBoosts().contains("extra reward points") &&
+                    (account.getRewardPoints() >= 160) &&
+                    !account.getBoosts().contains("FREE BTC bonus")) {
+                Engine.RedeemRewards(account, Boost.FP50);
             }
         } catch (BoostError e) {
-            if (e.getMessage().contains("smaller one")) {
-                Log.Print(Log.t.WRN, account.logDomain() + "Picking smaller one...");
-                try {
-                    Engine.RedeemRewards(account, Boost.RP10);
-                } catch (URISyntaxException uriSyntaxException) {
-                    uriSyntaxException.printStackTrace();
-                } catch (BoostError boostError) {
-                    boostError.printStackTrace();
-                }
-            }
             e.printStackTrace();
         } catch (URISyntaxException e) {
             Log.Print(Log.t.ERR, account.logDomain() + "Boost cannot be activated.");
@@ -813,6 +815,56 @@ public class Engine {
         }
     }
 
+    public static boolean Bet(Account account, double stake) throws URISyntaxException, IOException, BetError {
+        String rand = Utils.safeDouble(ThreadLocalRandom.current().nextDouble(0, 1));
+        String m;
+        if (new Random().nextInt(2) == 0) {
+            m = "hi";
+        } else {
+            m = "lo";
+        }
+        HttpGet get = new HttpGet("https://freebitco.in/cgi-bin/bet.pl");
+        get.setURI(new URIBuilder(get.getURI())
+                .addParameter("m", m)
+                .addParameter("client_seed", RandomStringUtils.random(16, Rune.seedBytes))
+                .addParameter("jackpot", "0")
+                .addParameter("stake", Utils.safeDouble(stake))
+                .addParameter("multiplier", "2.00")
+                .addParameter("rand", rand)
+                .addParameter("csrf_token", account.getCSRFToken()).build());
+        get.addHeader(Header.acceptAll);
+        get.addHeader(Header.xCsrfToken, account.getCSRFToken());
+        get.addHeader(Header.xreqXML);
+        get.addHeader(HttpHeaders.REFERER, "https://freebitco.in/?op=home");
+        try (CloseableHttpResponse response = account.httpClient.execute(get, account.httpClientContext)) {
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                String body = EntityUtils.toString(entity);
+                if (body.charAt(0) == 's') {
+                    String[] vals = StringUtils.split(body, ':');
+
+                    account.setBalance(Double.parseDouble(vals[3]));
+                    if (vals[1].equals("w")) {
+                        Log.Print(Log.t.INF, account.logDomain() + "Betting: WIN " + Utils.safeDouble(stake));
+                        return true;
+                    } else if (vals[1].equals("l")) {
+                        Log.Print(Log.t.INF, account.logDomain() + "Betting: LOS " + Utils.safeDouble(stake));
+                        return false;
+                    } else {
+                        throw new BetError("unknown status");
+                    }
+                } else if (body.charAt(0) == 'e') {
+                    throw new BetError(body);
+                }
+            } else {
+                throw new NullPointerException();
+            }
+        } catch (IOException | BetError e) {
+            throw e;
+        }
+        return false;
+    }
+
     public static class LoginError extends Exception {
         LoginError(String errorMessage) {
             super(errorMessage);
@@ -825,6 +877,11 @@ public class Engine {
         }
     }
 
+    public static class BetError extends Exception {
+        BetError(String errorMessage) {
+            super(errorMessage);
+        }
+    }
 
     public static class BoostError extends Exception {
         BoostError(String errorMessage) {
