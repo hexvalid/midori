@@ -93,7 +93,7 @@
                       </Tab>
                         <Tab text="Betting">
                            <content>
-                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="16.0">
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="11.0">
                                  <children>
                                     <HBox alignment="CENTER_LEFT" spacing="8.0">
                                        <children>
@@ -101,7 +101,31 @@
                                           <TextField fx:id="_acm_targetprofit" text="0.00000025" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
-                                    <ProgressBar fx:id="_acm_martingalebar" maxWidth="1.7976931348623157E308" prefHeight="30.0" progress="0.0" VBox.vgrow="ALWAYS" />
+                                    <ProgressBar fx:id="_acm_martingalebar" maxWidth="1.7976931348623157E308" prefHeight="25.0" progress="0.0" VBox.vgrow="ALWAYS" />
+                                    <HBox>
+                                       <children>
+                                          <ProgressBar fx:id="_acm_martingaleprofitbar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="_acm_martingaleprofit" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="95.0" text="0.00000000" />
+                                       </children>
+                                    </HBox>
+                                    <HBox spacing="16.0">
+                                       <children>
+                                          <Button fx:id="_acm_simulatemartingale" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#_simulateMartingale" prefHeight="20.0" text="Simulate" />
+                                          <Label fx:id="_acm_simulatemartingaleanswer" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="00.00%" textFill="#797979" />
+                                          <Separator orientation="VERTICAL">
+                                             <HBox.margin>
+                                                <Insets left="15.0" right="15.0" />
+                                             </HBox.margin>
+                                          </Separator>
+                                          <Label maxHeight="1.7976931348623157E308" text="Sleep: " />
+                                          <TextField fx:id="_acm_martingalesleep" prefWidth="60.0" text="2222" />
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="_acm_martingaletierinfo" text="Click Simulate to calculate tier" textFill="#858585">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                    </Label>
                                     <Button fx:id="_acm_playmartingale" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#_playMartingale" prefHeight="40.0" text="Start Martingale Loop" />
                                  </children>
                                  <padding>

@@ -171,13 +171,17 @@ public class MainController implements Initializable {
     private Button _acm_v3;
 
     @FXML
-    private Button _acm_playmartingale;
+    private Button _acm_playmartingale, _acm_simulatemartingale;
 
     @FXML
-    private TextField _acm_targetprofit;
+    private TextField _acm_targetprofit, _acm_martingalesleep;
 
     @FXML
-    private ProgressBar _acm_martingalebar;
+    private ProgressBar _acm_martingalebar, _acm_martingaleprofitbar;
+
+    @FXML
+    private Label _acm_martingaleprofit, _acm_simulatemartingaleanswer, _acm_martingaletierinfo;
+
 
     //Other vars
     static List<Account> accounts;
@@ -692,10 +696,13 @@ public class MainController implements Initializable {
                     } else {
                         amount = targetAmount;
                     }
-                    _acm_martingalebar.setProgress(a.getBalance() / (startBalance + profit));
+                    Platform.runLater(() -> {
+                        _acm_martingaleprofit.setText(String.format("%.8f", a.getBalance() - startBalance));
+                        _acm_martingalebar.setProgress(a.getBalance() / (startBalance + profit));
+                        _acm_martingaleprofitbar.setProgress(Math.max(0, (a.getBalance() - startBalance) / profit));
+                    });
 
-                    Thread.sleep(new Random().nextInt(2222));
-
+                    Thread.sleep(new Random().nextInt(Integer.parseInt(_acm_martingalesleep.getText())));
                 }
             } catch (IOException | URISyntaxException | Engine.BetError | InterruptedException e) {
                 Log.Print(Log.t.ERR, e.getMessage());
@@ -715,5 +722,68 @@ public class MainController implements Initializable {
             }
         }).start();
     }
+
+    @FXML
+    void _simulateMartingale() {
+        new Thread(() -> {
+            try {
+                Platform.runLater(() -> _acm_simulatemartingale.setDisable(true));
+                double balance = _atc.getSelectionModel().getSelectedItem().getBalance();
+                double profit = Double.parseDouble(_acm_targetprofit.getText());
+                int win = 0;
+                for (int i = 0; i < 10000; i++) {
+                    if (sim(balance, profit)) {
+                        win++;
+                    }
+                }
+                double stat = ((win / 10000.0) * 100);
+
+                Platform.runLater(() -> _acm_simulatemartingaleanswer.setText(String.format("%.2f", stat) + "%"));
+                double target = _atc.getSelectionModel().getSelectedItem().getBalance();
+                for (int i = 0; i < martingaleTiers.length; i++) {
+                    if (target >= martingaleTiers[i] / 100000000.0 && target < martingaleTiers[i + 1] / 100000000.0) {
+                        int finalI = i;
+                        Platform.runLater(() -> _acm_martingaletierinfo.setText(String.format("Current Tier: #%d (%.8f). Next tier: %.8f",
+                                finalI, martingaleTiers[finalI] / 100000000.0, martingaleTiers[finalI + 1] / 100000000.0)));
+                        break;
+                    }
+                }
+            } finally {
+                Platform.runLater(() -> _acm_simulatemartingale.setDisable(false));
+            }
+
+        }).start();
+    }
+
+    public static boolean sim(double balance, double profit) {
+        final double startBalance = balance;
+        double amount = 0.00000001;
+        boolean lastStat;
+        while (true) {
+            if (balance >= startBalance + profit) {
+                return true;
+            }
+            if (amount > balance) {
+                return false;
+            }
+            if (new Random().nextFloat() < 0.475) {
+                balance += amount;
+                lastStat = true;
+            } else {
+                balance -= amount;
+                lastStat = false;
+            }
+
+            if (!lastStat) {
+                amount = amount * 2;
+            } else {
+                amount = 0.00000001;
+            }
+        }
+    }
+
+    final private static int[] martingaleTiers = new int[]{1, 3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191,
+            16383, 32767, 65535, 131071, 262143, 524287, 1048575, 2097151, 4194303, 8388607, 16777215, 33554431,
+            67108863, 134217727, 268435455, 536870911, 1073741823, 2147483647};
 
 }
