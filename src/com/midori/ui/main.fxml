@@ -108,15 +108,17 @@
                                           <Label fx:id="_acm_martingaleprofit" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="95.0" text="0.00000000" />
                                        </children>
                                     </HBox>
-                                    <HBox spacing="16.0">
+                                    <HBox spacing="9.0">
                                        <children>
                                           <Button fx:id="_acm_simulatemartingale" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#_simulateMartingale" prefHeight="20.0" text="Simulate" />
                                           <Label fx:id="_acm_simulatemartingaleanswer" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="00.00%" textFill="#797979" />
                                           <Separator orientation="VERTICAL">
                                              <HBox.margin>
-                                                <Insets left="15.0" right="15.0" />
+                                                <Insets />
                                              </HBox.margin>
                                           </Separator>
+                                          <CheckBox fx:id="_acm_randomizemartingale" maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true" text="R" />
+                                          <Separator orientation="VERTICAL" />
                                           <Label maxHeight="1.7976931348623157E308" text="Sleep: " />
                                           <TextField fx:id="_acm_martingalesleep" prefWidth="60.0" text="2222" />
                                        </children>
@@ -294,6 +296,7 @@
                                     <Button layoutX="642.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dShuffle" text="shuffle" />
                                     <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dStartAll" text="start all" />
                                     <Button layoutX="93.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dStopAll" text="stop all" />
+                                    <Button layoutX="169.0" layoutY="186.0" mnemonicParsing="false" onAction="#_dStartAll" prefHeight="26.0" prefWidth="95.0" text="open all" />
                                  </children>
                               </AnchorPane>
                           </content>

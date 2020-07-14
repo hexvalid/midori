@@ -9,6 +9,9 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.TextFlow;
 import javafx.util.StringConverter;
@@ -21,6 +24,7 @@ import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -182,6 +186,8 @@ public class MainController implements Initializable {
     @FXML
     private Label _acm_martingaleprofit, _acm_simulatemartingaleanswer, _acm_martingaletierinfo;
 
+    @FXML
+    private CheckBox _acm_randomizemartingale;
 
     //Other vars
     static List<Account> accounts;
@@ -678,6 +684,10 @@ public class MainController implements Initializable {
                 double amount = targetAmount;
 
                 boolean lastStat = true;
+
+                int targetSleep = Integer.parseInt(_acm_martingalesleep.getText());
+                int sleep = targetSleep;
+                boolean randomize = _acm_randomizemartingale.isSelected();
                 while (true) {
 
                     if (a.getBalance() >= startBalance + profit) {
@@ -689,12 +699,14 @@ public class MainController implements Initializable {
                         Log.Print(Log.t.INF, a.logDomain() + "Betting: LOST END");
                         break;
                     }
-                    lastStat = Engine.Bet(_atc.getSelectionModel().getSelectedItem(), amount);
+                    lastStat = Engine.Bet(_atc.getSelectionModel().getSelectedItem(), amount, randomize);
 
                     if (!lastStat) {
+                        sleep = sleep * 2;
                         amount = amount * 2;
                     } else {
                         amount = targetAmount;
+                        sleep = targetSleep;
                     }
                     Platform.runLater(() -> {
                         _acm_martingaleprofit.setText(String.format("%.8f", a.getBalance() - startBalance));
@@ -702,7 +714,7 @@ public class MainController implements Initializable {
                         _acm_martingaleprofitbar.setProgress(Math.max(0, (a.getBalance() - startBalance) / profit));
                     });
 
-                    Thread.sleep(new Random().nextInt(Integer.parseInt(_acm_martingalesleep.getText())));
+                    Thread.sleep(sleep);
                 }
             } catch (IOException | URISyntaxException | Engine.BetError | InterruptedException e) {
                 Log.Print(Log.t.ERR, e.getMessage());

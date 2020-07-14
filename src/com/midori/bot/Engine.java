@@ -394,7 +394,13 @@ public class Engine {
             if (account.getBoosts().contains("extra reward points") &&
                     (account.getRewardPoints() >= 160) &&
                     !account.getBoosts().contains("FREE BTC bonus")) {
-                Engine.RedeemRewards(account, Boost.FP50);
+                if (account.getRewardPoints() >= 400) {
+                    Engine.RedeemRewards(account, Boost.FP100);
+                } else {
+                    Engine.RedeemRewards(account, Boost.FP50);
+
+                }
+
             }
         } catch (BoostError e) {
             e.printStackTrace();
@@ -815,18 +821,27 @@ public class Engine {
         }
     }
 
-    public static boolean Bet(Account account, double stake) throws URISyntaxException, IOException, BetError {
-        String rand = Utils.safeDouble(ThreadLocalRandom.current().nextDouble(0, 1));
-        String m;
-        if (new Random().nextInt(2) == 0) {
-            m = "hi";
+    public static boolean Bet(Account account, double stake, boolean randomize)
+            throws URISyntaxException, IOException, BetError {
+        String rand, m, seed;
+        if (randomize) {
+            rand = Utils.safeDouble(ThreadLocalRandom.current().nextDouble(0, 1));
+            if (new Random().nextInt(2) == 0) {
+                m = "hi";
+            } else {
+                m = "lo";
+            }
+            seed = RandomStringUtils.random(16, Rune.seedBytes);
         } else {
             m = "lo";
+            rand = "0.0";
+            seed = "0000000000000000";
         }
+
         HttpGet get = new HttpGet("https://freebitco.in/cgi-bin/bet.pl");
         get.setURI(new URIBuilder(get.getURI())
                 .addParameter("m", m)
-                .addParameter("client_seed", RandomStringUtils.random(16, Rune.seedBytes))
+                .addParameter("client_seed", seed)
                 .addParameter("jackpot", "0")
                 .addParameter("stake", Utils.safeDouble(stake))
                 .addParameter("multiplier", "2.00")
